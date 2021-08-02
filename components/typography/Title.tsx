@@ -4,6 +4,7 @@ import { MotionBox } from "../transitions/motion";
 import Link from "next/link";
 import { LinkIcon } from "../icons";
 import { useColorModeValue } from "../../hooks";
+import { motion } from "framer-motion";
 type TProps = {
 	children: string;
 	underlineColor?: string;
@@ -11,8 +12,8 @@ type TProps = {
 };
 
 const variants = {
-	unHover: { scale: 1 },
-	hover: { scale: 1.1 },
+	unHover: { translateX: 0},
+	hover: {  width: "110%", translateX: "-9px"},
 };
 export const Title = ({ children, underlineColor, path, ...props }: TProps) => {
 	const [hoverEl, setHoverEl] = useState(false);
@@ -44,17 +45,21 @@ export const Title = ({ children, underlineColor, path, ...props }: TProps) => {
 				) : (
 					<>{children}</>
 				)}
-				<MotionBox
+
+				<motion.div
 					animate={hoverEl ? "hover" : "unHover"}
 					variants={variants}
-					as="span"
-					display="block"
-					position="absolute"
-					bg={color}
-					w={"100%"}
-					h={"1px"}
-					bottom={-2}
-				/>
+				>
+					<Box
+						as="span"
+						display="block"
+						position="absolute"
+						bg={color}
+						w={"100%"}
+						h={"1px"}
+						bottom={-2}
+					/>
+				</motion.div>
 			</Box>
 		</Box>
 	);

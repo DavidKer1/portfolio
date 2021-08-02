@@ -1,5 +1,4 @@
 import React from "react";
-import { Title } from "../typography/Title";
 import { HomeSection } from "./HomeSection";
 import { SimpleGrid, Flex, Stack, Heading, Text } from "../elements";
 import { Card } from "../cards";

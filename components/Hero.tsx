@@ -28,7 +28,6 @@ export const Hero = () => {
 				Victor Sanchez
 			</Text>
 			<MotionBox
-				opacity="0"
 				initial={{
 					opacity: 0,
 				}}
