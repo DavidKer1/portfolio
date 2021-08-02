@@ -5,20 +5,23 @@ import {
 	Flex,
 	IconButton,
 	HStack,
+	Stack,
 	Avatar,
 	Link as UILink,
 } from "./elements";
 import { CrossIcon, HamburguerIcon, GithubIcon, LinkedinIcon } from "./icons";
 import { useDisclosure, useColorModeValue } from "../hooks";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { Collapse } from "@chakra-ui/react";
 
 type TLink = {
 	name: string;
 	path: string;
 };
 const links = [
-	{ name: "About", path: "/about" },
-	{ name: "Projects", path: "/projects" },
+	{name:"Inicio", path:"/"},
+	{ name: "Proyectos", path: "/projects" },
+	{ name: "Sobre mi", path: "/about" },
 ];
 
 const CustomNavLink = ({ path, name }: TLink) => {
@@ -45,19 +48,27 @@ const CustomNavLink = ({ path, name }: TLink) => {
 export const TopNav = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure();
 	return (
-		<Box bg={useColorModeValue("white", "gray.700")} px={4} boxShadow={"lg"}>
-			<Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+		<Box bg={useColorModeValue("white", "gray.700")} boxShadow={"lg"}>
+			<Flex
+				h={16}
+				alignItems={"center"}
+				justifyContent={"space-between"}
+				maxW={800}
+				w={["90%", "85%", "80%"]}
+				mx="auto"
+			>
 				<IconButton
 					size={"md"}
+					rounded={"xl"}
 					icon={isOpen ? <CrossIcon /> : <HamburguerIcon />}
 					aria-label={"Open Menu"}
 					display={["inherit", "inherit", "none"]}
 					onClick={isOpen ? onClose : onOpen}
 				/>
 				<HStack spacing={8} alignItems={"center"}>
-					<Box>
+					<Box display={{ base: "none", md: "flex" }}>
 						<Link href={"/"} passHref>
-							<Avatar size={"sm"} src={"/assets/avatar.jpg"} />
+							<Avatar size={"sm"} src={"/assets/avatar.jpg"} as="button"/>
 						</Link>
 					</Box>
 					<HStack
@@ -103,6 +114,26 @@ export const TopNav = () => {
 					<ColorModeSwitcher justifySelf="flex-end" />
 				</Flex>
 			</Flex>
+			<Collapse in={isOpen}>
+				<Box
+					pb={4}
+					w={["100%", "100%", "80%"]}
+					maxW={800}
+					display={["inherit", "inherit", "none"]}
+					px={4}
+				>
+					<Stack>
+						{links.map((link, index) => (
+							<CustomNavLink
+								key={index}
+								name={link.name}
+								path={link.path}
+							/>
+						))}
+					</Stack>
+				</Box>
+			</Collapse>
 		</Box>
 	);
 };
+

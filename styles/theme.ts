@@ -10,14 +10,16 @@ export const theme = extendTheme({
 	styles: {
 		global: (props) => ({
 			a: {
-				color: mode("blue.500", "blue.200")(props),
-				transition: "color 0.15s",
+				transition: "color 0.35s",
 				transitionTimingFunction: "ease-out",
-				fontWeight: "500",
 				_hover: {
-					color: mode("blue.600", "blue.300")(props),
+					color: mode("blue.700", "blue.300")(props),
 				},
 			},
 		}),
+	},
+	fonts: {
+		heading: "Poppins",
+		body: "Roboto",
 	},
 });

@@ -1,4 +1,3 @@
-import { AppProps } from "next/app";
 import React from "react";
 import { TopNav } from '../components/TopNav';
 
