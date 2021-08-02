@@ -11,4 +11,5 @@ export {
   FaLinkedinIn as LinkedinIcon,
   FaMoon as MoonIcon,
   FaSun as SunIcon,
+  FaLink as LinkIcon
 } from 'react-icons/fa'
