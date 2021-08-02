@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { Box, Icon } from "../elements";
-import { MotionBox } from "../transitions/motion";
 import Link from "next/link";
 import { LinkIcon } from "../icons";
 import { useColorModeValue } from "../../hooks";
-import { motion } from "framer-motion";
+import { MotionBox } from "../transitions/motion";
 type TProps = {
 	children: string;
-	underlineColor?: string;
 	path?: string;
+	[props: string]: any;
 };
 
 const variants = {
-	unHover: { translateX: 0},
-	hover: {  width: "110%", translateX: "-9px"},
+	unHover: { scale: 1 },
+	hover: { scale: 1.1 },
 };
-export const Title = ({ children, underlineColor, path, ...props }: TProps) => {
+export const Title = ({ children, path }: TProps) => {
 	const [hoverEl, setHoverEl] = useState(false);
 	const color = useColorModeValue("blue.700", "blue.300");
 
@@ -27,7 +26,7 @@ export const Title = ({ children, underlineColor, path, ...props }: TProps) => {
 			fontWeight="bold"
 			fontFamily="heading"
 			textAlign="left"
-			{...props}
+			mb={8}
 		>
 			<Box
 				as="span"
@@ -46,20 +45,17 @@ export const Title = ({ children, underlineColor, path, ...props }: TProps) => {
 					<>{children}</>
 				)}
 
-				<motion.div
+				<MotionBox
 					animate={hoverEl ? "hover" : "unHover"}
 					variants={variants}
-				>
-					<Box
-						as="span"
-						display="block"
-						position="absolute"
-						bg={color}
-						w={"100%"}
-						h={"1px"}
-						bottom={-2}
-					/>
-				</motion.div>
+					as="span"
+					display="block"
+					position="absolute"
+					bg={color}
+					w={"100%"}
+					h={"1px"}
+					bottom={-2}
+				/>
 			</Box>
 		</Box>
 	);

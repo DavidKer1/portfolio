@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import Link from "next/link";
 
 import { useColorModeValue } from "../hooks";
-import { Text, Avatar, Box } from "./elements";
+import { Text, Avatar } from "./elements";
 import { MotionBox } from "./transitions/motion";
 export const Hero = () => {
 	const jsColor = useColorModeValue("#f0ac01", "#f1e05a");

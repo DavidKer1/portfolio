@@ -9,7 +9,7 @@ type TProps = {
 export const HomeSection = ({ headerTitle, headerPath, children }: TProps) => {
 	return (
 		<>
-			<Title mb={8} path={headerPath}>
+			<Title path={headerPath}>
 				{headerTitle}
 			</Title>
 			<section>{children}</section>
