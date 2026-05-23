@@ -33,7 +33,7 @@ export function AboutSection() {
 	}, [])
 
 	return (
-		<section id="about" className="py-32 px-6 lg:px-8" ref={sectionRef}>
+		<section id="about" className="py-20 px-6 lg:px-8" ref={sectionRef}>
 			<div className="max-w-6xl mx-auto">
 				<h2
 					className={`text-sm uppercase tracking-wider text-muted-foreground mb-16 transition-all duration-700 text-center md:text-left ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} flex items-center gap-3 justify-start`}
