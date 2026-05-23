@@ -2,6 +2,7 @@
 
 import { MapPin } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useIsMobile } from "@/components/ui/use-mobile"
 
 const phrases = [
 	"I build digital products.",
@@ -43,11 +44,38 @@ export function HeroSection() {
 		return () => clearTimeout(timeout)
 	}, [displayText, isDeleting, currentPhrase])
 
+	const isMobile = useIsMobile()
+
 	return (
 		<section
 			id="home"
 			className="min-h-screen max-h-screen flex items-center justify-center px-6 lg:px-8 pt-16"
 		>
+			<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+				{[...Array(8)].map((_, i) => (
+					<div
+						key={`h-${i}`}
+						className="absolute h-px bg-foreground/10"
+						style={{
+							top: `${(100 / 8) * (i + 1)}%`,
+							left: 0,
+							right: 0,
+						}}
+					/>
+				))}
+
+				{[...Array(isMobile ? 7 : 12)].map((_, i) => (
+					<div
+						key={`v-${i}`}
+						className="absolute w-px bg-foreground/10"
+						style={{
+							left: `${(100 / (isMobile ? 7 : 12)) * (i + 1)}%`,
+							top: 0,
+							bottom: 0,
+						}}
+					/>
+				))}
+			</div>
 			<div className="max-w-4xl mx-auto text-center">
 				<p className="text-sm uppercase tracking-wider text-muted-foreground mb-8 animate-fade-in">
 					Full Stack Developer
