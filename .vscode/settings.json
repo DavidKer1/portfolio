@@ -11,5 +11,10 @@
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
-	}
+	},
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"biome.configurationPath": "biome.json",
+	"css.customData": [".vscode/tailwindcss.custom-data.json"]
 }
