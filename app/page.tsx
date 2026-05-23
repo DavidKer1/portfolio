@@ -1,6 +1,7 @@
 import { AboutSection } from "@/components/about-section"
 import { ConnectSection } from "@/components/connect-section"
 import { ExperienceSection } from "@/components/experience-section"
+import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero-section"
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
 			<AboutSection />
 			<ExperienceSection />
 			<ConnectSection />
+			<Footer />
 		</main>
 	)
 }
