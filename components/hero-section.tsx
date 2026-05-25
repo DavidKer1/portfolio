@@ -87,8 +87,9 @@ export function HeroSection() {
 				</h1>
 
 				<p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed text-balance animate-fade-in-delay-2">
-					I help businesses and founders turn ideas into fast, polished web
-					products that look great, work smoothly, and are built to grow.
+					I help businesses and founders turn ideas into fast, polished web and
+					mobile products. Apps that look stunning, work seamlessly, and are
+					built to scale.
 				</p>
 
 				<div className="flex justify-center items-center gap-3 mb-12 animate-fade-in-delay-3">
