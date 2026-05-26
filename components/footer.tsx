@@ -4,7 +4,7 @@ export function Footer() {
 			<div className="max-w-6xl mx-auto">
 				<div className="flex flex-col items-center">
 					<p className="text-sm text-muted-foreground">
-						© 2025 Victor Sanchez. All rights reserved.
+						© 2026 Victor Sanchez. All rights reserved.
 					</p>
 				</div>
 			</div>

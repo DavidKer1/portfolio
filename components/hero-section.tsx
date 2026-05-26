@@ -1,6 +1,6 @@
 "use client"
 
-import { MapPin } from "lucide-react"
+import { ArrowRight, MapPin } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useIsMobile } from "@/components/ui/use-mobile"
 
@@ -43,6 +43,14 @@ export function HeroSection() {
 
 		return () => clearTimeout(timeout)
 	}, [displayText, isDeleting, currentPhrase])
+
+	const scrollToProjects = () => {
+		document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+	}
+
+	const scrollToConnect = () => {
+		document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" })
+	}
 
 	const isMobile = useIsMobile()
 
@@ -103,6 +111,21 @@ export function HeroSection() {
 							<span>Saltillo Coahuila, MX</span>
 						</div>
 					</div>
+				</div>
+				<div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay-4">
+					<button
+						onClick={scrollToProjects}
+						className="px-8 py-4 bg- text-accent-foreground rounded-lg hover:opacity-90 transition-opacity font-medium flex items-center gap-2"
+					>
+						View My Work
+						<ArrowRight className="w-4 h-4" />
+					</button>
+					<button
+						onClick={scrollToConnect}
+						className="px-8 py-4 border border-border rounded-lg hover:bg-muted transition-colors font-medium"
+					>
+						Get In Touch
+					</button>
 				</div>
 			</div>
 		</section>
