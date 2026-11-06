@@ -1,0 +1,42 @@
+---
+import { copy, correo, type Lang } from "../i18n";
+import Base from "../layouts/Base.astro";
+import About from "./About.astro";
+import Contact from "./Contact.astro";
+import Evaluation from "./Evaluation.astro";
+import Offer from "./Offer.astro";
+import RouteList from "./RouteList.astro";
+import RunViewer from "./RunViewer.astro";
+import Work from "./Work.astro";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = copy(lang);
+---
+
+<Base lang={lang} jsonLd>
+	<section class="hero wrap">
+		<h1>{t.hero.h1}</h1>
+		<div class="hero-grid">
+			<div class="hero-side">
+				<p class="hero-lead">{t.hero.lead}</p>
+				<a class="button" href={`#${t.contact.id}`}>{t.hero.cta}</a>
+				<p class="hero-price">{t.hero.price}</p>
+				<p class="hero-mail">
+					<a href={`mailto:${correo}`}>{correo}</a>
+					<button type="button" class="copy" data-copy={correo} data-copied={t.hero.copied}>{t.hero.copy}</button>
+				</p>
+			</div>
+			<RunViewer lang={lang} />
+		</div>
+	</section>
+	<Offer lang={lang} />
+	<Evaluation lang={lang} />
+	<Work lang={lang} />
+	<RouteList lang={lang} />
+	<About lang={lang} />
+	<Contact lang={lang} />
+</Base>

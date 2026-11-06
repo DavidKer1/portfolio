@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+import calendario from "../assets/work/apuntafy-calendario.webp";
+import { copy, type Lang } from "../i18n";
+import CaseLayout from "./CaseLayout.astro";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = copy(lang).apuntafyCase;
+const otherPath = lang === "es" ? "/en/work/apuntafy/" : "/trabajo/apuntafy/";
+
+const ambiguo = `if (result.kind === "ambiguous") {
+  await this.dependencies.unitOfWork.run(async (context) => {
+    await context.accounts.lockById(candidate.accountId);
+    await context.deliveries.lockById(candidate.deliveryId);
+    const changed = await context.deliveries.markSubmissionUnknown({
+      deliveryId: candidate.deliveryId,
+      expectedProviderMode: candidate.providerMode,
+      expectedSubmissionFence: candidate.submissionFence,
+      reason: result.code,
+      occurredAt: now,
+      actorUserId: null,
+    });
+    if (changed !== 1) throwInvariant("WhatsApp ambiguous submission lost its fence");
+  });
+  summary.ambiguous += 1;
+  return;
+}`;
+---
+
+<CaseLayout
+	lang={lang}
+	title={t.title}
+	metaTitle={t.meta}
+	description={t.description}
+	lead={t.lead}
+	facts={t.facts}
+	otherPath={otherPath}
+>
+	<section class="case-section wrap">
+		<a class="text-link case-visit" href="https://apuntafy.com/es">{t.visit}</a>
+		<figure class="panel panel-apuntafy-case">
+			<Image src={calendario} alt={t.alt} widths={[640, 1000, 1400, 2000]} sizes="(min-width: 1500px) 1388px, 92vw" loading="lazy" />
+		</figure>
+	</section>
+
+	<section class="case-section wrap case-two">
+		<div>
+			<h2>{t.whyTitle}</h2>
+			<p>{t.why}</p>
+		</div>
+		<div>
+			<h2>{t.gatesTitle}</h2>
+			<p>{t.gatesText}</p>
+			<ol class="gates">
+				{t.gates.map((g) => <li>{g}</li>)}
+			</ol>
+		</div>
+	</section>
+
+	<div class="band">
+		<section class="case-section wrap case-two">
+			<div>
+				<h2>{t.codeTitle}</h2>
+				<p>{t.codeText}</p>
+			</div>
+			<div class="case-code-block">
+				<p class="case-code-title">whatsapp-dispatcher.ts</p>
+				<pre class="case-code case-code-dark" tabindex="0"><code>{ambiguo}</code></pre>
+			</div>
+		</section>
+	</div>
+
+	<section class="case-section wrap">
+		<h2>{t.decisionsTitle}</h2>
+		<dl class="case-facts case-decisions">
+			{t.decisions.map(([name, value]) => (
+				<div>
+					<dt>{name}</dt>
+					<dd>{value}</dd>
+				</div>
+			))}
+		</dl>
+	</section>
+</CaseLayout>

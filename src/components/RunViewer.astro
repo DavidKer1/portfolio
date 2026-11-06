@@ -1,0 +1,167 @@
+---
+import { corridaOriginal } from "../data/folio";
+import { copy, type Lang } from "../i18n";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = copy(lang);
+const l = t.runs.labels;
+
+const corridas = t.runs.items.map((item) => ({
+	...item,
+	corrida: corridaOriginal(item.id),
+}));
+
+function partes(correo: string, marca: string) {
+	const i = marca ? correo.indexOf(marca) : -1;
+	if (i < 0) return { antes: correo, marca: "", despues: "" };
+	return {
+		antes: correo.slice(0, i),
+		marca,
+		despues: correo.slice(i + marca.length),
+	};
+}
+---
+
+<section class="runs" aria-labelledby="runs-title" data-runs>
+	<div class="runs-head">
+		<h2 id="runs-title">{t.runs.title}</h2>
+		<div class="runs-tabs" role="tablist" aria-label={t.runs.tabsLabel} hidden data-tabs>
+			{corridas.map((r, i) => (
+				<button
+					type="button"
+					role="tab"
+					id={`tab-${r.id}`}
+					aria-controls={`run-${r.id}`}
+					aria-selected={i === 0 ? "true" : "false"}
+					tabindex={i === 0 ? 0 : -1}
+				>
+					{r.tab}
+				</button>
+			))}
+		</div>
+	</div>
+	<div class="runs-panels">
+		{corridas.map((r, i) => {
+			const texto = partes(r.corrida.correo, r.mark);
+			const pedido = r.corrida.resultado;
+			if (!pedido) throw new Error(`La corrida ${r.id} no tiene resultado`);
+			return (
+				<div
+					class:list={["run", { "is-active": i === 0 }]}
+					id={`run-${r.id}`}
+					role="tabpanel"
+					aria-labelledby={`tab-${r.id}`}
+				>
+					<p class="run-summary">{r.summary}</p>
+					<ol class="rail">
+						<li class="rail-stop" style="--i:0">
+							<h3>{l.mail}</h3>
+							<p class="run-mail" lang="es">{texto.antes}{texto.marca && <mark>{texto.marca}</mark>}{texto.despues}</p>
+						</li>
+						<li class="rail-stop is-model" style="--i:1">
+							<h3>{l.model} <span>{r.corrida.segundos} {l.seconds}</span></h3>
+							<dl class="draft-fields">
+								<div><dt>{l.client}</dt><dd>{pedido.cliente ?? l.empty}</dd></div>
+								<div><dt>{l.reference}</dt><dd>{pedido.referencia ?? l.empty}</dd></div>
+								<div><dt>{l.delivery}</dt><dd>{pedido.entrega ?? l.empty}</dd></div>
+								<div><dt>{l.destination}</dt><dd>{pedido.destino ?? l.empty}</dd></div>
+							</dl>
+							<ul class="draft-items" lang="es">
+								{pedido.articulos.map((a) => (
+									<li class:list={{ "is-bad": a.descripcion === r.badItem }}>
+										<span>{a.cantidad}</span> {a.descripcion}
+									</li>
+								))}
+							</ul>
+							{r.modelNote && (
+								<p class="run-thought">
+									<code lang="en">{r.modelQuote}</code>
+									{r.modelNote}
+								</p>
+							)}
+							<details class="run-raw">
+								<summary>{l.raw}</summary>
+								<pre tabindex="0"><code>{r.corrida.crudo}</code></pre>
+							</details>
+						</li>
+						<li class="rail-stop" style="--i:2">
+							<h3>{l.validator}</h3>
+							<p>{r.validator}</p>
+						</li>
+						<li class:list={["rail-stop", r.stopped ? "is-stopped" : "is-done"]} style="--i:3" data-review>
+							<h3>{l.review}</h3>
+							<p class="review-text" aria-live="polite">{r.review}</p>
+							{r.stopped && (
+								<button
+									type="button"
+									class="review-toggle"
+									hidden
+									data-review-toggle
+									data-with={r.review}
+									data-without={r.noReview}
+									data-remove={l.removeReview}
+									data-restore={l.restoreReview}
+								>
+									{l.removeReview}
+								</button>
+							)}
+						</li>
+					</ol>
+				</div>
+			);
+		})}
+	</div>
+	<p class="runs-note">{t.runs.note} <a href={t.routes.folio}>{t.runs.noteLink}</a></p>
+</section>
+
+<script>
+	const raiz = document.querySelector<HTMLElement>("[data-runs]");
+	const lista = raiz?.querySelector<HTMLElement>("[data-tabs]");
+	if (raiz && lista) {
+		const tabs = [...lista.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+		const animar = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+		function mostrar(tab: HTMLButtonElement, enfocar: boolean) {
+			for (const otra of tabs) {
+				const activa = otra === tab;
+				otra.setAttribute("aria-selected", String(activa));
+				otra.tabIndex = activa ? 0 : -1;
+				const panel = document.getElementById(otra.getAttribute("aria-controls") ?? "");
+				panel?.classList.toggle("is-active", activa);
+				panel?.classList.remove("is-playing");
+				if (activa && panel && animar) {
+					void panel.offsetWidth;
+					panel.classList.add("is-playing");
+				}
+			}
+			if (enfocar) tab.focus();
+		}
+
+		lista.hidden = false;
+		tabs.forEach((tab, i) => {
+			tab.addEventListener("click", () => mostrar(tab, false));
+			tab.addEventListener("keydown", (e) => {
+				const delta = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+				if (delta === 0) return;
+				e.preventDefault();
+				mostrar(tabs[(i + delta + tabs.length) % tabs.length], true);
+			});
+		});
+		mostrar(tabs[0], false);
+
+		for (const boton of raiz.querySelectorAll<HTMLButtonElement>("[data-review-toggle]")) {
+			const parada = boton.closest<HTMLElement>("[data-review]");
+			const texto = parada?.querySelector<HTMLElement>(".review-text");
+			boton.hidden = false;
+			boton.addEventListener("click", () => {
+				const quitada = parada?.classList.toggle("is-removed");
+				if (texto) texto.textContent = (quitada ? boton.dataset.without : boton.dataset.with) ?? "";
+				boton.textContent = (quitada ? boton.dataset.restore : boton.dataset.remove) ?? "";
+			});
+		}
+	}
+</script>

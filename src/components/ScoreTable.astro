@@ -1,0 +1,63 @@
+---
+import { evaluacion } from "../data/folio";
+import { copy, type Lang } from "../i18n";
+
+interface Props {
+	lang: Lang;
+	detailed?: boolean;
+}
+
+const { lang, detailed = false } = Astro.props;
+const t = copy(lang).evaluation;
+const { original: a, corregido: b } = evaluacion;
+const fmt = (n: { ok: number; n: number }) => `${n.ok} ${t.of} ${n.n}`;
+const seg = (s: number) => `${s.toFixed(1)} s`;
+---
+
+<div class="score-wrap">
+	<table class="score">
+		<caption class="sr-only">{t.caption}</caption>
+		<thead>
+			<tr>
+				<th scope="col">{t.headers.row}</th>
+				<th scope="col">{t.headers.original}</th>
+				<th scope="col">{t.headers.fixed}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">{t.rows.tuning}</th>
+				<td>{fmt(a.ajuste)}</td>
+				<td>{fmt(b.ajuste)}</td>
+			</tr>
+			<tr>
+				<th scope="row">{t.rows.fresh}</th>
+				<td>{fmt(a.nuevos)}</td>
+				<td>{fmt(b.nuevos)}</td>
+			</tr>
+			<tr class="is-key">
+				<th scope="row">{t.rows.blind}<small>{t.rows.blindNote}</small></th>
+				<td>{fmt(a.ciegos)}</td>
+				<td>{fmt(b.ciegos)}</td>
+			</tr>
+			<tr>
+				<th scope="row">{t.rows.obeyed}</th>
+				<td>{a.obedecio} {t.of} {a.inyecciones}</td>
+				<td>{b.obedecio} {t.of} {b.inyecciones}</td>
+			</tr>
+			<tr>
+				<th scope="row">{t.rows.invented}</th>
+				<td>{a.inventados}</td>
+				<td>{b.inventados}</td>
+			</tr>
+			<tr>
+				<th scope="row">{t.rows.time}</th>
+				<td>{seg(a.segundos)}</td>
+				<td>{seg(b.segundos)}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<p class="fine">{t.correctNote}</p>
+{detailed && t.criteria.map((c) => <p class="fine">{c}</p>)}
+<p class="fine">{t.costNote}</p>

@@ -1,0 +1,33 @@
+---
+import { copy, type Lang } from "../i18n";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = copy(lang);
+const rutas = t.routes as unknown as Record<string, string>;
+---
+
+<section class="section wrap route-section" id={t.route.id}>
+	<div class="section-head">
+		<h2>{t.route.h2}</h2>
+		<p>{t.route.intro}</p>
+	</div>
+	<div class="route-columns" aria-hidden="true">
+		<span>{t.route.columns.stop}</span>
+		<span>{t.route.columns.what}</span>
+		<span>{t.route.columns.where}</span>
+	</div>
+	<ol class="route-list">
+		{t.route.stops.map((stop) => (
+			<li class:list={{ "is-model": stop.model }}>
+				<h3>{stop.name}</h3>
+				<p>{stop.text}</p>
+				<a href={rutas[stop.href]}>{stop.where}</a>
+			</li>
+		))}
+	</ol>
+	<p class="fine">{t.route.note}</p>
+</section>

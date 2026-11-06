@@ -1,0 +1,43 @@
+---
+import { copy, type Lang } from "../i18n";
+import Base from "../layouts/Base.astro";
+
+interface Props {
+	lang: Lang;
+	title: string;
+	metaTitle: string;
+	description: string;
+	lead: string;
+	facts: string[][];
+	otherPath: string;
+}
+
+const { lang, title, metaTitle, description, lead, facts, otherPath } = Astro.props;
+const t = copy(lang);
+---
+
+<Base lang={lang} title={metaTitle} description={description} otherPath={otherPath}>
+	<section class="case-hero wrap">
+		<a class="case-back" href={`${t.routes.home}#${t.work.id}`}>{t.caseCommon.back}</a>
+		<h1>{title}</h1>
+		<p class="case-lead">{lead}</p>
+		<dl class="case-facts">
+			{facts.map(([name, value]) => (
+				<div>
+					<dt>{name}</dt>
+					<dd>{value}</dd>
+				</div>
+			))}
+		</dl>
+	</section>
+	<slot />
+	<section class="case-cta">
+		<div class="wrap">
+			<div>
+				<h2>{t.caseCommon.cta}</h2>
+				<p>{t.caseCommon.ctaText}</p>
+			</div>
+			<a class="button button-dark" href={`${t.routes.home}#${t.contact.id}`}>{t.caseCommon.ctaButton}</a>
+		</div>
+	</section>
+</Base>

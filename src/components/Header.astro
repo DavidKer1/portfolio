@@ -1,0 +1,22 @@
+---
+import { copy, type Lang } from "../i18n";
+
+interface Props {
+	lang: Lang;
+	otherPath?: string;
+}
+
+const { lang, otherPath } = Astro.props;
+const t = copy(lang);
+const home = t.routes.home;
+---
+
+<header class="site-header wrap">
+	<a class="site-name" href={home}>Victor Sanchez</a>
+	<nav aria-label={lang === "es" ? "Principal" : "Main"}>
+		<a class="nav-optional" href={`${home}#${t.work.id}`}>{t.nav.work}</a>
+		<a class="nav-optional" href={`${home}#${t.offer.id}`}>{t.nav.start}</a>
+		<a href={`${home}#${t.contact.id}`}>{t.nav.contact}</a>
+		<a href={otherPath ?? t.routes.other} hreflang={t.nav.otherLang} lang={t.nav.otherLang}>{t.nav.other}</a>
+	</nav>
+</header>
