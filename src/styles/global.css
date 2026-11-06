@@ -228,7 +228,8 @@ pre {
 	opacity: 1;
 }
 
-html:not(.js) .copy {
+html:not(.js) .copy,
+html:not(.js) [data-mail-form] {
 	display: none;
 }
 

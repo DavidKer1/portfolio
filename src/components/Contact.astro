@@ -21,7 +21,7 @@ const t = all.contact;
 				<button type="button" class="copy" data-copy={correo} data-copied={all.hero.copied} aria-live="polite">{all.hero.copy}</button>
 			</p>
 		</div>
-		<form action={`mailto:${correo}`} method="get" data-mail-form>
+		<form data-mail-form data-mailto={correo}>
 			<input type="hidden" name="subject" value={t.subject} />
 			<label for="mensaje">{t.label}</label>
 			<textarea id="mensaje" name="body" rows="6" placeholder={t.placeholder} required></textarea>

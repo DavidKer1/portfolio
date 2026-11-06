@@ -34,7 +34,7 @@ El ámbar no decora: si todo es ámbar, deja de señalar. Los enlaces van en col
 - Las imágenes son del producto real. Cada panel toma el color de su producto.
 - Un solo movimiento automático: la corrida recorre el riel al cargar y al cambiar de pestaña. Respeta `prefers-reduced-motion`.
 - Una sola interacción de argumento: quitar la revisión humana y ver qué saldría.
-- Todo funciona sin JavaScript: sin él, las corridas se muestran una tras otra y el formulario abre el correo directo.
+- Todo funciona sin JavaScript: sin él, las corridas se muestran una tras otra y en lugar del formulario queda el enlace directo al correo.
 
 ## Texto
 
