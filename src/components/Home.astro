@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import apuntafyCal from "../assets/work/apuntafy-calendario.webp";
 import apuntafyMovil from "../assets/work/apuntafy-movil.webp";
 import apuntafyProducto from "../assets/work/apuntafy-producto.webp";
 import peoplecor from "../assets/work/peoplecor.webp";
@@ -76,13 +75,12 @@ const [destacados, resto] = [t.work.items.slice(0, 2), t.work.items.slice(2)];
 					{t.featured.points.map((p) => <li>{p}</li>)}
 				</ul>
 				<p class="featured-links">
-					<a class="button" href={t.routes.apuntafy}>{t.featured.cta}</a>
+					<a class="text-link" href={t.routes.apuntafy}>{t.featured.cta}</a>
 					<a class="text-link" href="https://apuntafy.com/es">{t.featured.site}</a>
 				</p>
 			</div>
-			<div class="panel panel-apuntafy featured-shots">
-				<Image class="shot-desktop" src={apuntafyCal} alt={t.apuntafyCase.altCalendar} widths={[640, 960, 1400]} sizes="(min-width: 1100px) 46vw, 86vw" loading="lazy" />
-				<Image class="shot-phone" src={apuntafyMovil} alt="" widths={[240, 400]} sizes="(min-width: 1100px) 15vw, 30vw" loading="lazy" />
+			<div class="panel panel-apuntafy case-phone featured-phone">
+				<Image src={apuntafyMovil} alt={t.apuntafyCase.altMobile} widths={[300, 600]} sizes="300px" loading="lazy" />
 			</div>
 		</div>
 	</section>
@@ -133,7 +131,9 @@ const [destacados, resto] = [t.work.items.slice(0, 2), t.work.items.slice(2)];
 					</li>
 				))}
 			</ol>
-			<p class="steps-note">{t.process.note}</p>
+			<div class="steps-cta">
+				<WhatsAppButton lang={lang} label={t.hero.cta} />
+			</div>
 		</div>
 	</section>
 

@@ -3,7 +3,7 @@ export const es = {
 	meta: {
 		title: "Victor Sanchez, desarrollo de apps y sistemas a la medida",
 		description:
-			"Desarrollo apps web y móviles a la medida para negocios. Más de seis años de experiencia y productos propios en producción. Escríbeme por WhatsApp.",
+			"Desarrollo la app o el sistema que tu negocio necesita. Más de seis años haciendo software web y móvil, con productos propios en producción. Cotiza por WhatsApp.",
 	},
 	routes: {
 		home: "/",
@@ -21,11 +21,11 @@ export const es = {
 	},
 	whatsapp: "Hola Victor, vi tu página y quiero platicar de un proyecto.",
 	hero: {
-		h1: "Apps y sistemas a la medida para tu negocio.",
-		lead: "Soy Victor Sanchez, desarrollador en Saltillo. Llevo más de seis años haciendo software web y móvil, y uso IA para entregarlo más rápido.",
-		cta: "Escríbeme por WhatsApp",
+		h1: "Desarrollo la app o el sistema que tu negocio necesita.",
+		lead: "Soy Victor Sanchez, desarrollador en Saltillo. Llevo más de seis años haciendo software web y móvil. Apuntafy, mi agenda de reservas para salones, ya tiene clientes.",
+		cta: "Cotiza tu proyecto por WhatsApp",
 		secondary: "Ver proyectos",
-		note: "La primera llamada no tiene costo.",
+		note: "Hablas directo conmigo y la primera llamada no tiene costo.",
 		caption: "Apuntafy, mi sistema de reservas para salones.",
 		alt: "Calendario de reservas y lista de servicios de Apuntafy en computadora y celular",
 		proofLabel: "Proyectos en los que he trabajado",
@@ -36,26 +36,26 @@ export const es = {
 		h2: "En qué te ayudo",
 		items: [
 			{
-				name: "Sistemas web a la medida",
-				text: "Reservas, pagos, inventarios o paneles de control, hechos para cómo trabaja tu negocio.",
+				name: "Tu negocio ya no cabe en Excel",
+				text: "Te hago un sistema web para citas, pedidos, inventario o cobros.",
 				example: "Como Apuntafy",
 				href: "#apuntafy",
 			},
 			{
-				name: "Apps para Android y iPhone",
-				text: "Desde el diseño hasta la publicación en las tiendas.",
+				name: "Quieres una app para tus clientes",
+				text: "La diseño, la programo y la publico en las tiendas de Android y iPhone.",
 				example: "Como Sonrisas Mexicanas",
 				href: "#sonrisas",
 			},
 			{
-				name: "Automatización con WhatsApp e IA",
-				text: "Recordatorios, mensajes y tareas repetitivas que hoy alguien hace a mano.",
+				name: "Contestas lo mismo todo el día",
+				text: "Automatizo recordatorios, respuestas y tareas repetitivas con WhatsApp e IA.",
 				example: "Como los recordatorios de Apuntafy",
 				href: "#apuntafy",
 			},
 			{
-				name: "Mejoras a tu sistema actual",
-				text: "Corrijo fallas y agrego funciones a software que ya tienes.",
+				name: "Tu sistema actual falla o se quedó corto",
+				text: "Lo corrijo y le agrego lo que le falta.",
 				example: "Como en PeopleCor",
 				href: "#peoplecor",
 			},
@@ -64,11 +64,11 @@ export const es = {
 	featured: {
 		id: "apuntafy",
 		h2: "Apuntafy",
-		text: "Agenda de reservas para salones y estéticas en México. Lo diseñé, lo construí y hoy tiene clientes.",
+		text: "Agenda de reservas para salones y estéticas en México. La diseñé y la programé, y hoy tiene clientes.",
 		points: [
 			"Reservas en línea desde un enlace",
 			"Recordatorios por WhatsApp",
-			"Planes y cobros en línea",
+			"Cobro de planes con tarjeta",
 		],
 		cta: "Ver el caso",
 		site: "apuntafy.com",
@@ -132,22 +132,21 @@ export const es = {
 			{ name: "Te mando una propuesta", text: "Alcance, tiempos y precio fijo, por escrito." },
 			{ name: "Construyo y te muestro avances", text: "Cada semana ves cómo va, hasta publicarlo." },
 		],
-		note: "Uso IA para avanzar más rápido. El código lo reviso yo y al final es tuyo.",
 	},
 	faq: {
 		h2: "Preguntas frecuentes",
 		items: [
 			{
 				q: "¿Cuánto cuesta?",
-				a: "Depende de lo que necesites. Después de la llamada te mando una propuesta con precio fijo, sin cobros sorpresa.",
+				a: "Depende de lo que necesites. Después de la llamada te mando una propuesta por escrito con precio fijo.",
 			},
 			{
-				q: "¿Con quién voy a tratar?",
-				a: "Conmigo. Hablas directo con quien diseña y escribe el código.",
+				q: "¿Usas IA?",
+				a: "Sí, para programar más rápido. Reviso cada cambio y te entrego código probado.",
 			},
 			{
 				q: "¿Qué pasa después de entregar?",
-				a: "Te entrego el código y lo necesario para operarlo. Si quieres, le doy mantenimiento por mes.",
+				a: "El código es tuyo y te dejo lo necesario para operarlo. Si quieres, le doy mantenimiento por mes.",
 			},
 		],
 	},
@@ -160,7 +159,7 @@ export const es = {
 		id: "contacto",
 		h2: "¿Tienes un proyecto en mente?",
 		text: "Escríbeme por WhatsApp o por correo y platicamos.",
-		whatsapp: "Escríbeme por WhatsApp",
+		whatsapp: "Cotiza tu proyecto por WhatsApp",
 		copy: "Copiar correo",
 		copied: "Copiado",
 	},

@@ -5,7 +5,7 @@ export const en: Copy = {
 	meta: {
 		title: "Victor Sanchez, custom apps and software for businesses",
 		description:
-			"I build custom web and mobile apps for businesses. Over six years of experience and products of my own in production. Message me on WhatsApp.",
+			"I build the app or system your business needs. Over six years building web and mobile software, with products of my own in production. Get a quote on WhatsApp.",
 	},
 	routes: {
 		home: "/en/",
@@ -23,11 +23,11 @@ export const en: Copy = {
 	},
 	whatsapp: "Hi Victor, I saw your website and I'd like to talk about a project.",
 	hero: {
-		h1: "Custom apps and software for your business.",
-		lead: "I'm Victor Sanchez, a developer in Saltillo, Mexico. I've been building web and mobile software for over six years, and I use AI to deliver it faster.",
-		cta: "Message me on WhatsApp",
+		h1: "I build the app or system your business needs.",
+		lead: "I'm Victor Sanchez, a developer in Saltillo, Mexico. I've been building web and mobile software for over six years. Apuntafy, my booking system for salons, already has customers.",
+		cta: "Get a quote on WhatsApp",
 		secondary: "See projects",
-		note: "The first call is free.",
+		note: "You work directly with me, and the first call is free.",
 		caption: "Apuntafy, my booking system for salons.",
 		alt: "Apuntafy booking calendar and service list on desktop and phone",
 		proofLabel: "Projects I've worked on",
@@ -38,26 +38,26 @@ export const en: Copy = {
 		h2: "How I can help",
 		items: [
 			{
-				name: "Custom web systems",
-				text: "Bookings, payments, inventory or dashboards, built around how your business works.",
+				name: "Your business has outgrown spreadsheets",
+				text: "I build a web system for appointments, orders, inventory or billing.",
 				example: "Like Apuntafy",
 				href: "#apuntafy",
 			},
 			{
-				name: "Android and iPhone apps",
-				text: "From design to publishing in the stores.",
+				name: "You want an app for your customers",
+				text: "I design it, build it and publish it on the Android and iPhone stores.",
 				example: "Like Sonrisas Mexicanas",
 				href: "#sonrisas",
 			},
 			{
-				name: "WhatsApp and AI automation",
-				text: "Reminders, messages and repetitive tasks someone does by hand today.",
+				name: "You answer the same questions all day",
+				text: "I automate reminders, replies and repetitive tasks with WhatsApp and AI.",
 				example: "Like Apuntafy's reminders",
 				href: "#apuntafy",
 			},
 			{
-				name: "Improvements to your current system",
-				text: "I fix bugs and add features to software you already have.",
+				name: "Your current system breaks or falls short",
+				text: "I fix it and add what it's missing.",
 				example: "Like at PeopleCor",
 				href: "#peoplecor",
 			},
@@ -66,11 +66,11 @@ export const en: Copy = {
 	featured: {
 		id: "apuntafy",
 		h2: "Apuntafy",
-		text: "A booking system for salons in Mexico. I designed it, built it, and today it has customers.",
+		text: "A booking system for salons in Mexico. I designed and built it, and today it has customers.",
 		points: [
 			"Online booking from a single link",
 			"WhatsApp reminders",
-			"Online plans and billing",
+			"Plan billing by card",
 		],
 		cta: "Read the case",
 		site: "apuntafy.com",
@@ -134,22 +134,21 @@ export const en: Copy = {
 			{ name: "I send a proposal", text: "Scope, timeline and a fixed price, in writing." },
 			{ name: "I build and show progress", text: "You see where it stands every week, until launch." },
 		],
-		note: "I use AI to move faster. I review the code myself, and it's yours at the end.",
 	},
 	faq: {
 		h2: "Questions",
 		items: [
 			{
 				q: "How much does it cost?",
-				a: "It depends on what you need. After the call I send a proposal with a fixed price, no surprise charges.",
+				a: "It depends on what you need. After the call I send a written proposal with a fixed price.",
 			},
 			{
-				q: "Who will I work with?",
-				a: "With me. You talk directly to the person who designs and writes the code.",
+				q: "Do you use AI?",
+				a: "Yes, to code faster. I review every change and deliver tested code.",
 			},
 			{
 				q: "What happens after delivery?",
-				a: "You get the code and what you need to run it. If you want, I can maintain it monthly.",
+				a: "The code is yours, and I leave you what you need to run it. If you want, I can maintain it monthly.",
 			},
 		],
 	},
@@ -162,7 +161,7 @@ export const en: Copy = {
 		id: "contact",
 		h2: "Have a project in mind?",
 		text: "Message me on WhatsApp or by email and let's talk.",
-		whatsapp: "Message me on WhatsApp",
+		whatsapp: "Get a quote on WhatsApp",
 		copy: "Copy email",
 		copied: "Copied",
 	},
