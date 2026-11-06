@@ -13,16 +13,30 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.local(),
-			name: "Archivo",
-			cssVariable: "--font-archivo",
-			fallbacks: ["Arial", "sans-serif"],
+			name: "Geist",
+			cssVariable: "--font-geist",
+			fallbacks: ["system-ui", "sans-serif"],
 			options: {
 				variants: [
 					{
 						weight: "100 900",
-						stretch: "62% 125%",
 						style: "normal",
-						src: ["./src/assets/fonts/archivo-variable.woff2"],
+						src: ["./src/assets/fonts/geist-variable.woff2"],
+					},
+				],
+			},
+		},
+		{
+			provider: fontProviders.local(),
+			name: "Geist Mono",
+			cssVariable: "--font-geist-mono",
+			fallbacks: ["ui-monospace", "monospace"],
+			options: {
+				variants: [
+					{
+						weight: "100 900",
+						style: "normal",
+						src: ["./src/assets/fonts/geist-mono-variable.woff2"],
 					},
 				],
 			},

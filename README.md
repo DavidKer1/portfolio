@@ -17,7 +17,7 @@ Requiere Node 22.23.4 o superior.
 ## Dónde está cada cosa
 
 - `src/i18n/es.ts` y `en.ts`: todos los textos. Español en `/`, inglés en `/en/`.
-- `src/components/`: portada, caso de Apuntafy y piezas compartidas.
+- `src/components/`: portada, encabezado y pie.
 - `src/i18n/index.ts`: correo y número de WhatsApp.
 - `src/assets/work/`: capturas reales de cada producto.
 - `_referencia/`: copia local de la versión anterior, solo para consulta. Git la ignora.

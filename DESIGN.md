@@ -1,38 +1,32 @@
 # Diseño
 
-Sitio oscuro con la estructura y el nivel de acabado de marius.dev, elegido por Victor. Se quedó sin su lima, su degradado ni sus etiquetas mono.
+Victor pidió el 2026-11-06 un sitio muy parecido a marius.dev. Se replican su estructura y su estilo visual con código, textos e imágenes propios. No se copian su código, sus textos ni sus imágenes.
 
-## Idea
+## Estructura
 
-Es un portafolio de ventas: lo primero es qué ofrece Victor y cómo escribirle, y lo segundo es el trabajo real que lo respalda, con Apuntafy al frente. El elemento gráfico que se repite es un nodo ámbar sobre un riel: aparece en los pasos de "Cómo trabajo" y en los puntos de Apuntafy.
+1. Menú flotante en forma de píldora, con "Hablemos" en lima.
+2. Portada con nombre y rol en mono, titular grande con degradado en la segunda línea, botón "Ver proyectos" y correo copiable. A la derecha, un recuadro para escribir por WhatsApp con sugerencias, donde marius.dev tiene su chat.
+3. Cuatro tarjetas de proceso con diagramas SVG propios: Diseño, Desarrollo, Publicación y Mantenimiento.
+4. Proyectos en tarjetas grandes: una ancha, dos medianas, una ancha y dos medianas. Debajo, "Más trabajo" en lista.
+5. "Sobre mí" con texto breve y tabla de tecnologías.
+6. Contacto con correo a la izquierda y formulario a la derecha. El formulario arma un correo y sin JavaScript se oculta.
+7. Pie con el logotipo y enlaces en píldoras.
 
-## Color
+## Tokens
 
-| Token | Valor | Uso |
-|---|---|---|
-| `--bg` | `#131416` | Fondo |
-| `--raised` | `#1b1d20` | Bandas y la corrida |
-| `--line` | `#303338` | Filetes |
-| `--rail` | `#6b6f76` | Riel de las rutas, con contraste de 3:1 |
-| `--text` | `#f2f2ed` | Texto |
-| `--muted` | `#b0b3ad` | Texto secundario |
-| `--accent` | `#ffb224` | Acción principal (WhatsApp), nodos y cierre de contacto |
+| Token | Valor |
+|---|---|
+| Fondo | `#0c0d0e` |
+| Superficie y tarjeta | `#141516` y `#161718` |
+| Bordes | blanco al 8 % y al 14 % |
+| Texto y secundario | `#f3f4ee` y `#b3b9b4` |
+| Acento | `#d6f580` |
 
-El ámbar no decora: si todo es ámbar, deja de señalar. Los enlaces van en color de texto.
-
-## Tipografía
-
-- **Archivo** (variable, con eje de ancho) para todo: titulares a 104-106 % de ancho y peso 700.
-- Títulos en mayúscula inicial de oración. Sin mayúsculas sostenidas.
+Tipografía: Geist para todo y Geist Mono para etiquetas en mayúsculas. Radios de 24 px en las tarjetas grandes, 16-18 px en los recuadros y píldoras en botones y chips.
 
 ## Reglas
 
-- Sin tarjetas iguales, eyebrows, pastillas, flechas decorativas, gradientes de texto ni números de sección. Los únicos números son los tres pasos de "Cómo trabajo", porque son una secuencia.
-- Las imágenes son del producto real. Cada panel toma el color de su producto.
-- Sin animaciones automáticas.
-- Todo funciona sin JavaScript; solo el botón de copiar correo lo necesita.
-- La acción principal siempre es WhatsApp, y el correo es la alternativa.
-
-## Texto
-
-Español mexicano, primera persona, tuteo y frases cortas, en palabras de cliente y no de programador. Nada que no sea cierto: sin testimonios, logos ni cifras inventadas.
+- Poco texto y sin alardear.
+- Apuntafy es un proyecto más, no el centro.
+- Saltillo no aparece en la portada.
+- Nada que no sea cierto: sin testimonios, logos ni cifras inventadas.

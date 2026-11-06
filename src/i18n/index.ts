@@ -9,7 +9,7 @@ export function copy(lang: Lang) {
 
 export const correo = "dev@victorsanchez.mx";
 
-const telefono = "528443006533";
+export const telefono = "528443006533";
 
 export function whatsapp(lang: Lang) {
 	return `https://wa.me/${telefono}?text=${encodeURIComponent(copy(lang).whatsapp)}`;

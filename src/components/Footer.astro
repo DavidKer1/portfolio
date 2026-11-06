@@ -1,5 +1,5 @@
 ---
-import { copy, correo, type Lang } from "../i18n";
+import { copy, correo, type Lang, whatsapp } from "../i18n";
 
 interface Props {
 	lang: Lang;
@@ -7,14 +7,23 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = copy(lang);
+const enlaces = [
+	{ label: t.footer.email, href: `mailto:${correo}` },
+	{ label: "whatsapp", href: whatsapp(lang) },
+	{ label: "github", href: "https://github.com/DavidKer1" },
+	{ label: "linkedin", href: "https://linkedin.com/in/victor-sanchez-dev" },
+	{ label: t.nav.other.toLowerCase(), href: t.routes.other },
+];
 ---
 
 <footer class="site-footer wrap">
-	<div class="footer-links">
-		<a href={`mailto:${correo}`}>{correo}</a>
-		<a href="https://linkedin.com/in/victor-sanchez-dev">LinkedIn</a>
-		<a href="https://github.com/DavidKer1">GitHub</a>
+	<div class="footer-row">
+		<a class="wordmark" href={t.routes.home}>victorsanchez<span>.mx</span></a>
+		<ul class="footer-links">
+			{enlaces.map((e) => (
+				<li><a class="chip-link" href={e.href}>{e.label}</a></li>
+			))}
+		</ul>
 	</div>
-	<p>{t.footer.colophon}</p>
-	<p>Victor Sanchez. {t.footer.location}.</p>
+	<p class="footer-note">© 2026 {t.footer.rights}</p>
 </footer>
