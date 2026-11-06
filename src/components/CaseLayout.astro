@@ -1,6 +1,7 @@
 ---
 import { copy, type Lang } from "../i18n";
 import Base from "../layouts/Base.astro";
+import WhatsAppButton from "./WhatsAppButton.astro";
 
 interface Props {
 	lang: Lang;
@@ -31,13 +32,13 @@ const t = copy(lang);
 		</dl>
 	</section>
 	<slot />
-	<section class="case-cta">
-		<div class="wrap">
-			<div>
-				<h2>{t.caseCommon.cta}</h2>
-				<p>{t.caseCommon.ctaText}</p>
+	<section class="contact">
+		<div class="wrap contact-inner">
+			<h2>{t.caseCommon.cta}</h2>
+			<p>{t.caseCommon.ctaText}</p>
+			<div class="contact-actions">
+				<WhatsAppButton lang={lang} label={t.contact.whatsapp} dark />
 			</div>
-			<a class="button button-dark" href={`${t.routes.home}#${t.contact.id}`}>{t.caseCommon.ctaButton}</a>
 		</div>
 	</section>
 </Base>

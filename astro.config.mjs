@@ -27,20 +27,5 @@ export default defineConfig({
 				],
 			},
 		},
-		{
-			provider: fontProviders.local(),
-			name: "Spline Sans Mono",
-			cssVariable: "--font-spline",
-			fallbacks: ["ui-monospace", "monospace"],
-			options: {
-				variants: [
-					{
-						weight: "300 700",
-						style: "normal",
-						src: ["./src/assets/fonts/spline-sans-mono-variable.woff2"],
-					},
-				],
-			},
-		},
 	],
 });

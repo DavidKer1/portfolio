@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import calendario from "../assets/work/apuntafy-calendario.webp";
+import movil from "../assets/work/apuntafy-movil.webp";
+import producto from "../assets/work/apuntafy-producto.webp";
 import { copy, type Lang } from "../i18n";
 import CaseLayout from "./CaseLayout.astro";
 
@@ -11,24 +12,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = copy(lang).apuntafyCase;
 const otherPath = lang === "es" ? "/en/work/apuntafy/" : "/trabajo/apuntafy/";
-
-const ambiguo = `if (result.kind === "ambiguous") {
-  await this.dependencies.unitOfWork.run(async (context) => {
-    await context.accounts.lockById(candidate.accountId);
-    await context.deliveries.lockById(candidate.deliveryId);
-    const changed = await context.deliveries.markSubmissionUnknown({
-      deliveryId: candidate.deliveryId,
-      expectedProviderMode: candidate.providerMode,
-      expectedSubmissionFence: candidate.submissionFence,
-      reason: result.code,
-      occurredAt: now,
-      actorUserId: null,
-    });
-    if (changed !== 1) throwInvariant("WhatsApp ambiguous submission lost its fence");
-  });
-  summary.ambiguous += 1;
-  return;
-}`;
 ---
 
 <CaseLayout
@@ -40,49 +23,40 @@ const ambiguo = `if (result.kind === "ambiguous") {
 	facts={t.facts}
 	otherPath={otherPath}
 >
-	<section class="case-section wrap">
-		<a class="text-link case-visit" href="https://apuntafy.com/es">{t.visit}</a>
-		<figure class="panel panel-apuntafy-case">
-			<Image src={calendario} alt={t.alt} widths={[640, 1000, 1400, 2000]} sizes="(min-width: 1500px) 1388px, 92vw" loading="lazy" />
+	<section class="wrap">
+		<figure class="panel panel-apuntafy case-shot">
+			<Image src={producto} alt={t.altProduct} widths={[640, 1000, 1400]} sizes="(min-width: 1500px) 1388px, 92vw" priority />
 		</figure>
 	</section>
 
 	<section class="case-section wrap case-two">
-		<div>
-			<h2>{t.whyTitle}</h2>
-			<p>{t.why}</p>
-		</div>
-		<div>
-			<h2>{t.gatesTitle}</h2>
-			<p>{t.gatesText}</p>
-			<ol class="gates">
-				{t.gates.map((g) => <li>{g}</li>)}
-			</ol>
-		</div>
+		<h2>{t.problemTitle}</h2>
+		<p class="case-big">{t.problem}</p>
 	</section>
 
-	<div class="band">
-		<section class="case-section wrap case-two">
-			<div>
-				<h2>{t.codeTitle}</h2>
-				<p>{t.codeText}</p>
-			</div>
-			<div class="case-code-block">
-				<p class="case-code-title">whatsapp-dispatcher.ts</p>
-				<pre class="case-code case-code-dark" tabindex="0"><code>{ambiguo}</code></pre>
-			</div>
-		</section>
-	</div>
-
 	<section class="case-section wrap">
-		<h2>{t.decisionsTitle}</h2>
-		<dl class="case-facts case-decisions">
-			{t.decisions.map(([name, value]) => (
+		<h2>{t.builtTitle}</h2>
+		<dl class="built">
+			{t.built.map(([name, text]) => (
 				<div>
 					<dt>{name}</dt>
-					<dd>{value}</dd>
+					<dd>{text}</dd>
 				</div>
 			))}
 		</dl>
+	</section>
+
+	<section class="band">
+		<div class="case-section wrap case-two">
+			<div>
+				<h2>{t.detailTitle}</h2>
+				<p>{t.detail}</p>
+				<p class="fine">{t.base}</p>
+				<a class="text-link" href="https://apuntafy.com/es">{t.visit}</a>
+			</div>
+			<div class="panel panel-apuntafy case-phone">
+				<Image src={movil} alt={t.altMobile} widths={[300, 600]} sizes="300px" loading="lazy" />
+			</div>
+		</div>
 	</section>
 </CaseLayout>

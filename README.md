@@ -17,31 +17,10 @@ Requiere Node 22.23.4 o superior.
 ## Dónde está cada cosa
 
 - `src/i18n/es.ts` y `en.ts`: todos los textos. Español en `/`, inglés en `/en/`.
-- `src/data/folio.ts`: lee `evals/folio/*.json`. Las cifras de Folio no se escriben a mano.
-- `src/components/`: una pieza por sección y una por caso.
+- `src/components/`: portada, caso de Apuntafy y piezas compartidas.
+- `src/i18n/index.ts`: correo y número de WhatsApp.
 - `src/assets/work/`: capturas reales de cada producto.
-- `evals/folio/`: la evaluación de Folio (casos, prompt corregido, script y resultados).
 - `_referencia/`: copia local de la versión anterior, solo para consulta. Git la ignora.
-
-## Repetir la evaluación de Folio
-
-Usa el `extract.py` original de Folio sin modificarlo y requiere el modelo local.
-
-```sh
-FOLIO="<ruta a pedido-local>"
-cd evals/folio
-"$FOLIO/.venv/bin/python" evaluar.py "$FOLIO" casos-nuevos.json v1-nuevos.json
-"$FOLIO/.venv/bin/python" evaluar.py "$FOLIO" casos.json v2-casos.json prompt-v2.txt
-"$FOLIO/.venv/bin/python" evaluar.py "$FOLIO" casos-nuevos.json v2-nuevos.json prompt-v2.txt
-"$FOLIO/.venv/bin/python" evaluar.py "$FOLIO" casos-ciegos.json v1-ciegos.json
-"$FOLIO/.venv/bin/python" evaluar.py "$FOLIO" casos-ciegos.json v2-ciegos.json prompt-v2.txt
-```
-
-- `casos.json`: los 24 con los que se ajustó el prompt.
-- `casos-nuevos.json`: 12 escritos junto con el prompt corregido.
-- `casos-ciegos.json`: 12 escritos por un agente sin ver el prompt ni los demás casos. Es la cifra que se publica como principal.
-
-Si se cambia el prompt, los casos a ciegas dejan de serlo: hay que escribir otros, sin ver el prompt, antes de volver a publicar esa cifra.
 
 ## Despliegue en Coolify
 
