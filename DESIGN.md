@@ -4,7 +4,7 @@ Victor pidió el 2026-11-06 un sitio muy parecido a marius.dev. Se replican su e
 
 ## Estructura
 
-1. Menú flotante en forma de píldora, con "Hablemos" en lima.
+1. Menú flotante en forma de píldora, con "Hablemos" en ámbar.
 2. Portada con nombre y rol en mono, titular grande con degradado en la segunda línea, botón "Ver proyectos" y correo copiable. A la derecha, un recuadro para escribir por WhatsApp con sugerencias, donde marius.dev tiene su chat.
 3. Cuatro tarjetas de proceso con diagramas SVG propios: Diseño, Desarrollo, Publicación y Mantenimiento.
 4. Proyectos en tarjetas grandes: una ancha, dos medianas, una ancha y dos medianas. Debajo, "Más trabajo" en lista.
@@ -20,7 +20,7 @@ Victor pidió el 2026-11-06 un sitio muy parecido a marius.dev. Se replican su e
 | Superficie y tarjeta | `#141516` y `#161718` |
 | Bordes | blanco al 8 % y al 14 % |
 | Texto y secundario | `#f3f4ee` y `#b3b9b4` |
-| Acento | `#d6f580` |
+| Acento | `#ffb224` (ámbar; Victor lo prefirió al lima el 2026-11-06) |
 
 Tipografía: Geist para todo y Geist Mono para etiquetas en mayúsculas. Radios de 24 px en las tarjetas grandes, 16-18 px en los recuadros y píldoras en botones y chips.
 

@@ -8,8 +8,8 @@
 	--text: #f3f4ee;
 	--muted: #b3b9b4;
 	--faint: #858b86;
-	--accent: #d6f580;
-	--accent-ink: #17200a;
+	--accent: #ffb224;
+	--accent-ink: #1d1403;
 	--sans: var(--font-geist);
 	--mono: var(--font-geist-mono);
 	--gutter: clamp(20px, 5vw, 80px);
@@ -138,7 +138,7 @@ a:hover {
 
 .grad {
 	width: fit-content;
-	background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 30%, #e8f7bb 55%, var(--text) 85%);
+	background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 30%, #ffd48a 55%, var(--text) 85%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -162,11 +162,11 @@ a:hover {
 .btn-accent {
 	background: var(--accent);
 	color: var(--accent-ink);
-	box-shadow: 0 6px 24px rgb(214 245 128 / 18%);
+	box-shadow: 0 6px 24px rgb(255 178 36 / 18%);
 }
 
 .btn-accent:hover {
-	background: #e2fa9b;
+	background: #ffc04f;
 	color: var(--accent-ink);
 }
 
@@ -293,7 +293,7 @@ html:not(.js) .copy {
 	z-index: -1;
 	width: 720px;
 	height: 520px;
-	background: radial-gradient(closest-side, rgb(214 245 128 / 9%), transparent);
+	background: radial-gradient(closest-side, rgb(255 178 36 / 9%), transparent);
 }
 
 .hero-top {
@@ -375,9 +375,9 @@ html:not(.js) .copy {
 	place-items: center;
 	width: 34px;
 	height: 34px;
-	border: 1px solid rgb(214 245 128 / 25%);
+	border: 1px solid rgb(255 178 36 / 25%);
 	border-radius: 9px;
-	background: rgb(214 245 128 / 10%);
+	background: rgb(255 178 36 / 10%);
 	color: var(--accent);
 }
 
@@ -405,7 +405,7 @@ html:not(.js) .copy {
 }
 
 .chat-input:focus-within {
-	border-color: rgb(214 245 128 / 55%);
+	border-color: rgb(255 178 36 / 55%);
 }
 
 .chat-input input {
@@ -521,7 +521,7 @@ html:not(.js) .chat-chips {
 }
 
 .fill {
-	fill: rgb(214 245 128 / 12%);
+	fill: rgb(255 178 36 / 12%);
 }
 
 .dark {
@@ -959,9 +959,9 @@ html:not(.js) .chat-chips {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-	border-color: rgb(214 245 128 / 55%);
+	border-color: rgb(255 178 36 / 55%);
 	outline: none;
-	box-shadow: 0 0 0 3px rgb(214 245 128 / 12%);
+	box-shadow: 0 0 0 3px rgb(255 178 36 / 12%);
 }
 
 .contact-form .btn {
