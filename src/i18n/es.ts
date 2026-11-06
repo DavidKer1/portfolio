@@ -221,7 +221,7 @@ export const es = {
 			},
 			peoplecor: {
 				name: "PeopleCor",
-				text: "Reloj checador y recursos humanos para lecherías, con unos 5,000 empleados activos. Hice asistencia, flujos de nómina, tableros y permisos en React y Laravel, más dos apps de asistencia en Flutter desde cero. También integré flujos con IA en depuración, especificaciones y pruebas, con conexiones MCP y skills propias de depuración.",
+				text: "Reloj checador y recursos humanos para lecherías. Hice asistencia, flujos de nómina, tableros y permisos en React y Laravel, más dos apps de asistencia en Flutter desde cero. También integré flujos con IA en depuración, especificaciones y pruebas, con conexiones MCP y skills propias de depuración.",
 				status: "En producción. El producto es de la empresa.",
 				stack: "React, Laravel, Flutter",
 			},

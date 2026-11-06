@@ -223,7 +223,7 @@ export const en: Copy = {
 			},
 			peoplecor: {
 				name: "PeopleCor",
-				text: "Time clock and HR for dairies, with about 5,000 active employees. I built attendance, payroll workflows, dashboards and permissions in React and Laravel, plus two Flutter attendance apps from scratch. I also integrated AI-assisted workflows into debugging, specs and testing, with MCP connections and custom debugging skills.",
+				text: "Time clock and HR for dairies. I built attendance, payroll workflows, dashboards and permissions in React and Laravel, plus two Flutter attendance apps from scratch. I also integrated AI-assisted workflows into debugging, specs and testing, with MCP connections and custom debugging skills.",
 				status: "In production. The company owns the product.",
 				stack: "React, Laravel, Flutter",
 			},
