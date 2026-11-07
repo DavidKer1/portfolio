@@ -31,17 +31,3 @@ if (chat) {
 		window.open(`${chat.action}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
 	});
 }
-
-// Sin servidor, el formulario arma un correo con los datos. Un form con action
-// mailto: en HTTPS se marca como contenido mixto, por eso se arma con JavaScript.
-const formulario = document.querySelector<HTMLFormElement>("[data-mail-form]");
-formulario?.addEventListener("submit", (e) => {
-	e.preventDefault();
-	const datos = new FormData(formulario);
-	const proyecto = String(datos.get("proyecto") ?? "").trim();
-	const asunto = `${formulario.dataset.subject}${proyecto ? `: ${proyecto}` : ""}`;
-	const cuerpo = `${datos.get("mensaje")}\n\n${datos.get("nombre")}\n${datos.get("correo")}`;
-	location.href = `mailto:${formulario.dataset.mailto}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-	const aviso = formulario.querySelector<HTMLElement>("[data-mail-status]");
-	if (aviso) aviso.hidden = false;
-});

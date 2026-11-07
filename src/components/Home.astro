@@ -222,33 +222,26 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 				<span>{t.contact.h2b}<span class="accent">?</span></span>
 			</h2>
 			<p class="contact-text">{t.contact.text}</p>
-			<a class="contact-mail" href={`mailto:${correo}`}>{correo} <span set:html={flecha} /></a>
-			<p class="contact-note"><a href={whatsapp(lang)}>{t.contact.whatsapp}</a></p>
+			{t.contact.agencies && <p class="contact-agencies">{t.contact.agencies}</p>}
 		</div>
-		<form class="contact-form" data-mail-form data-mailto={correo} data-subject={t.contact.subject}>
-			<div class="field-row">
-				<label>
-					<span>{t.contact.name}</span>
-					<input name="nombre" type="text" placeholder={t.contact.namePh} autocomplete="name" required />
-				</label>
-				<label>
-					<span>{t.contact.email}</span>
-					<input name="correo" type="email" placeholder={t.contact.emailPh} autocomplete="email" required />
-				</label>
+		<div class="contact-card">
+			<div class="contact-row">
+				<p class="mono contact-label">{t.contact.emailLabel}</p>
+				<div class="contact-line">
+					<a class="contact-value" href={`mailto:${correo}`}>{correo}</a>
+					<button type="button" class="copy mono" data-copy={correo} data-copied={t.hero.copied} aria-live="polite">{t.hero.copy}</button>
+				</div>
 			</div>
-			<label>
-				<span>{t.contact.project} <small>({t.contact.optional})</small></span>
-				<input name="proyecto" type="text" placeholder={t.contact.projectPh} />
-			</label>
-			<label>
-				<span>{t.contact.message}</span>
-				<textarea name="mensaje" rows="5" placeholder={t.contact.messagePh} required></textarea>
-			</label>
-			<button type="submit" class="btn btn-accent btn-pill">
-				{t.contact.submit}
-				<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" /></svg>
-			</button>
-			<p class="form-status" role="status" data-mail-status hidden>{t.contact.sent} <a href={`mailto:${correo}`}>{correo}</a></p>
-		</form>
+			<div class="contact-row">
+				<p class="mono contact-label">{t.contact.whatsappLabel}</p>
+				<div class="contact-line">
+					<p class="contact-value">{t.contact.whatsappValue}</p>
+					<a class="btn btn-accent btn-pill" href={whatsapp(lang)}>
+						{t.contact.whatsappText}
+						<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" /></svg>
+					</a>
+				</div>
+			</div>
+		</div>
 	</section>
 </Base>

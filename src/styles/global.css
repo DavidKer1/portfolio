@@ -879,106 +879,52 @@ html:not(.js) .chat-chips {
 	font-size: 1.0625rem;
 }
 
-.contact-mail {
-	display: inline-flex;
-	align-items: center;
-	gap: 14px;
-	margin-top: 34px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid var(--border-2);
+.contact-agencies {
+	max-width: 28em;
+	margin-top: 16px;
 	color: var(--text);
-	font-size: 1.25rem;
+	font-size: 1rem;
 }
 
-.contact-mail svg {
-	color: var(--accent);
-}
-
-.contact-mail:hover {
-	border-color: var(--accent);
-}
-
-.contact-note {
-	margin-top: 14px;
-	font-size: 0.875rem;
-}
-
-.contact-note a {
-	text-decoration: underline;
-	text-underline-offset: 0.2em;
-	text-decoration-color: var(--border-2);
-}
-
-.contact-form {
-	padding: clamp(20px, 2.4vw, 28px);
+.contact-card {
+	padding: 6px clamp(20px, 2.4vw, 28px);
 	border: 1px solid var(--border);
 	border-radius: 24px;
 	background: var(--surface);
 	box-shadow: 0 30px 80px rgb(0 0 0 / 35%);
 }
 
-.field-row {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 16px;
+.contact-row {
+	padding: 22px 0;
+	border-bottom: 1px solid var(--border);
 }
 
-.contact-form label {
-	display: grid;
-	gap: 8px;
-	margin-bottom: 18px;
+.contact-row:last-child {
+	border-bottom: 0;
 }
 
-.contact-form label > span {
-	color: var(--text);
-	font-size: 0.875rem;
-}
-
-.contact-form small {
+.contact-label {
 	color: var(--faint);
 	font-size: 0.75rem;
 }
 
-.contact-form input,
-.contact-form textarea {
-	width: 100%;
-	padding: 13px 14px;
-	border: 1px solid var(--border-2);
-	border-radius: 12px;
-	background: var(--field);
+.contact-line {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px 20px;
+	margin-top: 10px;
+}
+
+.contact-value {
 	color: var(--text);
-	font: inherit;
-	font-size: 0.9375rem;
-	resize: vertical;
+	font-size: clamp(1.25rem, 2vw, 1.5rem);
+	letter-spacing: -0.02em;
 }
 
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-	color: var(--faint);
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-	border-color: rgb(255 178 36 / 55%);
-	outline: none;
-	box-shadow: 0 0 0 3px rgb(255 178 36 / 12%);
-}
-
-.contact-form .btn {
-	margin-top: 4px;
-}
-
-.form-status {
-	margin-top: 14px;
-	font-size: 0.875rem;
-}
-
-.form-status a {
-	color: var(--text);
-}
-
-html:not(.js) .contact-form {
-	display: none;
+.contact-value:hover {
+	color: var(--accent);
 }
 
 /* Pie */
@@ -1095,8 +1041,7 @@ html:not(.js) .contact-form {
 		gap: 6px;
 	}
 
-	.process-grid,
-	.field-row {
+	.process-grid {
 		grid-template-columns: minmax(0, 1fr);
 	}
 
