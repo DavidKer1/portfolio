@@ -28,6 +28,21 @@ Victor eligió el 2026-11-06 el estilo de usehalo.com. Se replican su estructura
 
 Tipografía: Figtree (libre, geométrica, parecida a la Centra de Halo), títulos en 800 con tracking muy cerrado y botones en mayúsculas.
 
+## Animación
+
+Con GSAP (ScrollTrigger) y Lenis, igual que usehalo.com, en `src/scripts/motion.ts`.
+
+- **Entrada:** el encabezado baja, la forma de vidrio crece girando, el titular sube línea por línea desde una máscara, luego aparecen el texto y los botones, y al final las capturas entran una tras otra con rebote.
+- **Scroll suave** con Lenis, también en los enlaces del menú.
+- **Portada al bajar:** parallax con una velocidad distinta por captura, el vidrio crece y el texto se desvanece.
+- **Títulos de sección:** la píldora aparece y cada línea sube desde su máscara.
+- **Bloques:** pestañas, tarjetas de servicio, proyectos, pasos y "Sobre mí" suben en cascada al entrar.
+- **Franjas curvas:** el borde se aplana conforme la franja sube.
+- **Franja de nombres:** se desliza sola y se detiene al pasar el ratón.
+- **Pie:** las letras de "VICTOR" suben una por una.
+
+Con "reducir movimiento" no hay animaciones ni scroll suave. Sin JavaScript todo se ve completo. La clase `anim` del `<head>` oculta la portada antes de pintar y se quita sola a los 3 s si el script no carga.
+
 ## Texto
 
 Corto y llano, como se le explica a un cliente por WhatsApp. Nada de eslóganes ni frases "de agencia". Victor corrige lo que no diría.

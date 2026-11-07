@@ -17,14 +17,20 @@ for (const boton of document.querySelectorAll<HTMLButtonElement>("[data-copy]"))
 const lista = document.querySelector<HTMLElement>("[data-tabs]");
 if (lista) {
 	const tabs = [...lista.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+	let actual = tabs[0];
 
 	function mostrar(tab: HTMLButtonElement, enfocar: boolean) {
 		for (const otra of tabs) {
 			const activa = otra === tab;
 			otra.setAttribute("aria-selected", String(activa));
 			otra.tabIndex = activa ? 0 : -1;
-			document.getElementById(otra.getAttribute("aria-controls") ?? "")?.classList.toggle("is-active", activa);
+			const panel = document.getElementById(otra.getAttribute("aria-controls") ?? "");
+			panel?.classList.toggle("is-active", activa);
+			if (activa && panel && otra !== actual) {
+				document.dispatchEvent(new CustomEvent("tab:change", { detail: panel }));
+			}
 		}
+		actual = tab;
 		if (enfocar) tab.focus();
 	}
 

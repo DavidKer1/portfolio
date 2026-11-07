@@ -67,6 +67,10 @@ const persona = {
 		<Font cssVariable="--font-figtree" preload />
 		<script is:inline>
 			document.documentElement.classList.add("js");
+			if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				document.documentElement.classList.add("anim");
+				setTimeout(() => document.documentElement.classList.remove("anim"), 3000);
+			}
 		</script>
 		{jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(persona)} />}
 	</head>
@@ -79,6 +83,7 @@ const persona = {
 		<Footer lang={lang} />
 		<script>
 			import "../scripts/site";
+			import "../scripts/motion";
 		</script>
 	</body>
 </html>

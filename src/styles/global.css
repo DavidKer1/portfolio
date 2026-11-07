@@ -120,6 +120,47 @@ a {
 	top: 12px;
 }
 
+/* Scroll suave (Lenis) */
+
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+html.lenis {
+	scroll-behavior: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+	overflow: clip;
+}
+
+/* Animación: la portada se oculta antes de pintar y GSAP la muestra. */
+
+html.anim .site-header,
+html.anim .hero-glass,
+html.anim .hero .hero-lead,
+html.anim .hero .hero-actions,
+html.anim .hero .hero-mail,
+html.anim .float {
+	visibility: hidden;
+}
+
+html.anim .hero h1 .line-in {
+	transform: translateY(115%);
+}
+
+.line {
+	display: block;
+	overflow: hidden;
+	padding-bottom: 0.1em;
+	margin-bottom: -0.1em;
+}
+
+.line-in {
+	display: block;
+}
+
 /* Botones */
 
 .btn {
@@ -320,11 +361,19 @@ html:not(.js) .copy {
 	isolation: isolate;
 }
 
+.hero-glass-wrap {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	transform-origin: 50% 35%;
+}
+
 .hero-glass {
 	position: absolute;
 	top: 130px;
-	left: 50%;
-	z-index: -1;
+	left: 0;
+	right: 0;
+	margin-inline: auto;
 	width: min(620px, 80vw);
 	aspect-ratio: 1;
 	border: 2px solid rgb(255 255 255 / 55%);
@@ -335,7 +384,7 @@ html:not(.js) .copy {
 	box-shadow:
 		inset 0 0 60px rgb(255 255 255 / 35%),
 		0 30px 80px rgb(6 32 68 / 10%);
-	transform: translateX(-50%) rotate(-8deg);
+	transform: rotate(-8deg);
 }
 
 .floats {
@@ -346,8 +395,13 @@ html:not(.js) .copy {
 	margin-inline: auto;
 }
 
-.float {
+.float-wrap {
 	position: absolute;
+}
+
+.float {
+	width: 100%;
+	height: 100%;
 	overflow: hidden;
 	border: 6px solid rgb(255 255 255 / 85%);
 	border-radius: 18px;
@@ -412,6 +466,18 @@ html:not(.js) .copy {
 
 .f4 img {
 	object-position: top;
+}
+
+.f2 .float {
+	animation-delay: -2s;
+}
+
+.f3 .float {
+	animation-delay: -4s;
+}
+
+.f4 .float {
+	animation-delay: -1s;
 }
 
 @keyframes flotar {
@@ -480,15 +546,38 @@ html:not(.js) .copy {
 	font-weight: 600;
 }
 
-.strip ul {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 14px clamp(28px, 4vw, 56px);
+.marquee {
 	margin-top: 22px;
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-track {
+	display: flex;
+	width: max-content;
+	animation: marquesina 34s linear infinite;
+}
+
+.marquee ul {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: clamp(36px, 5vw, 72px);
+	padding-right: clamp(36px, 5vw, 72px);
+}
+
+.marquee:hover .marquee-track {
+	animation-play-state: paused;
+}
+
+@keyframes marquesina {
+	to {
+		transform: translateX(-50%);
+	}
 }
 
 .strip li {
+	white-space: nowrap;
 	font-size: clamp(1.25rem, 2vw, 1.75rem);
 	font-weight: 900;
 	letter-spacing: -0.04em;
@@ -639,7 +728,7 @@ html:not(.js) .copy {
 .band-navy {
 	padding-top: clamp(110px, 12vw, 160px);
 	padding-bottom: clamp(90px, 10vw, 130px);
-	border-radius: 50% 50% 0 0 / clamp(48px, 7vw, 120px) clamp(48px, 7vw, 120px) 0 0;
+	border-radius: 50% 50% 0 0 / var(--arc, clamp(48px, 7vw, 120px)) var(--arc, clamp(48px, 7vw, 120px)) 0 0;
 	background: var(--navy-band);
 }
 
@@ -872,7 +961,7 @@ html:not(.js) .copy {
 .cta-band {
 	padding-top: clamp(110px, 12vw, 160px);
 	padding-bottom: clamp(90px, 10vw, 130px);
-	border-radius: 50% 50% 0 0 / clamp(48px, 7vw, 120px) clamp(48px, 7vw, 120px) 0 0;
+	border-radius: 50% 50% 0 0 / var(--arc, clamp(48px, 7vw, 120px)) var(--arc, clamp(48px, 7vw, 120px)) 0 0;
 	background: linear-gradient(180deg, var(--cyan) 0%, var(--cyan-light) 100%);
 }
 
@@ -955,6 +1044,9 @@ html:not(.js) .copy {
 }
 
 .footer-logo {
+	display: flex;
+	overflow: hidden;
+	padding-top: 0.08em;
 	color: var(--cyan);
 	font-size: clamp(4.5rem, 14vw, 11rem);
 	font-weight: 900;
@@ -993,8 +1085,30 @@ html:not(.js) .copy {
 		scroll-behavior: auto;
 	}
 
-	.float {
+	.float,
+	.marquee-track {
 		animation: none;
+	}
+
+	.marquee {
+		-webkit-mask-image: none;
+		mask-image: none;
+	}
+
+	.marquee-track {
+		width: auto;
+		justify-content: center;
+	}
+
+	.marquee ul {
+		flex-wrap: wrap;
+		justify-content: center;
+		row-gap: 14px;
+		padding-right: 0;
+	}
+
+	.marquee ul[aria-hidden] {
+		display: none;
 	}
 
 	.btn:hover,

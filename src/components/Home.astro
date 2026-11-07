@@ -33,17 +33,17 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 
 <Base lang={lang} jsonLd>
 	<section class="hero">
-		<div class="hero-glass" aria-hidden="true"></div>
+		<div class="hero-glass-wrap" aria-hidden="true"><div class="hero-glass"></div></div>
 		<div class="floats" aria-hidden="true">
-			<div class="float f1"><Image src={apuntafy} alt="" widths={[360, 720]} sizes="320px" priority /></div>
-			<div class="float f2"><Image src={peoplecor} alt="" widths={[300, 600]} sizes="260px" priority /></div>
-			<div class="float f3"><Image src={sonrisas} alt="" widths={[300, 600]} sizes="240px" loading="lazy" /></div>
-			<div class="float f4"><Image src={apuntafyMovil} alt="" widths={[240, 480]} sizes="200px" loading="lazy" /></div>
+			<div class="float-wrap f1" data-speed="-90"><div class="float"><Image src={apuntafy} alt="" widths={[360, 720]} sizes="320px" priority /></div></div>
+			<div class="float-wrap f2" data-speed="-60"><div class="float"><Image src={peoplecor} alt="" widths={[300, 600]} sizes="260px" priority /></div></div>
+			<div class="float-wrap f3" data-speed="-150"><div class="float"><Image src={sonrisas} alt="" widths={[300, 600]} sizes="240px" loading="lazy" /></div></div>
+			<div class="float-wrap f4" data-speed="-190"><div class="float"><Image src={apuntafyMovil} alt="" widths={[240, 480]} sizes="200px" loading="lazy" /></div></div>
 		</div>
 		<div class="wrap hero-inner">
 			<h1>
-				<span>{t.hero.h1a}</span>
-				<span>{t.hero.h1b}</span>
+				<span class="line"><span class="line-in">{t.hero.h1a}</span></span>
+				<span class="line"><span class="line-in">{t.hero.h1b}</span></span>
 			</h1>
 			<p class="hero-lead">{t.hero.lead}</p>
 			<div class="hero-actions">
@@ -59,15 +59,22 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 
 	<section class="strip" aria-label={t.strip}>
 		<p>{t.strip}</p>
-		<ul>
-			{t.work.items.map((p) => <li>{p.name}</li>)}
-		</ul>
+		<div class="marquee">
+			<div class="marquee-track">
+				<ul>
+					{t.work.items.map((p) => <li>{p.name}</li>)}
+				</ul>
+				<ul aria-hidden="true">
+					{t.work.items.map((p) => <li>{p.name}</li>)}
+				</ul>
+			</div>
+		</div>
 	</section>
 
 	<section class="wrap services" id={t.services.id}>
-		<div class="heading">
+		<div class="heading" data-heading>
 			<p class="pill pill-orange">{t.services.pill}</p>
-			<h2 class="two-tone"><span class="c">{t.services.h2a}</span><span>{t.services.h2b}</span></h2>
+			<h2 class="two-tone"><span class="line c"><span class="line-in">{t.services.h2a}</span></span><span class="line"><span class="line-in">{t.services.h2b}</span></span></h2>
 		</div>
 		<div class="tabs" role="tablist" hidden data-tabs>
 			{t.services.items.map((s, i) => (
@@ -106,9 +113,9 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 
 	<section class="band-navy" id={t.work.id}>
 		<div class="wrap">
-			<div class="heading">
+			<div class="heading" data-heading>
 				<p class="pill pill-yellow">{t.work.pill}</p>
-				<h2 class="two-tone on-navy"><span class="c">{t.work.h2a}</span><span>{t.work.h2b}</span></h2>
+				<h2 class="two-tone on-navy"><span class="line c"><span class="line-in">{t.work.h2a}</span></span><span class="line"><span class="line-in">{t.work.h2b}</span></span></h2>
 			</div>
 			<div class="project-grid">
 				{t.work.items.map((p) => (
@@ -136,9 +143,9 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 	</section>
 
 	<section class="wrap process" id={t.process.id}>
-		<div class="heading">
+		<div class="heading" data-heading>
 			<p class="pill pill-blue">{t.process.pill}</p>
-			<h2 class="two-tone"><span class="c">{t.process.h2a}</span><span>{t.process.h2b}</span></h2>
+			<h2 class="two-tone"><span class="line c"><span class="line-in">{t.process.h2a}</span></span><span class="line"><span class="line-in">{t.process.h2b}</span></span></h2>
 		</div>
 		<ol class="steps">
 			{t.process.steps.map((s, i) => (
@@ -153,9 +160,9 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 
 	<section class="wrap about" id={t.about.id}>
 		<div class="about-card">
-			<div>
+			<div data-heading>
 				<p class="pill pill-orange">{t.about.pill}</p>
-				<h2 class="two-tone"><span class="c">{t.about.h2a}</span><span>{t.about.h2b}</span></h2>
+				<h2 class="two-tone"><span class="line c"><span class="line-in">{t.about.h2a}</span></span><span class="line"><span class="line-in">{t.about.h2b}</span></span></h2>
 			</div>
 			<div class="about-body">
 				{t.about.text.map((p) => <p>{p}</p>)}
@@ -168,9 +175,9 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 	</section>
 
 	<section class="cta-band" id={t.contact.id}>
-		<div class="wrap cta-inner">
+		<div class="wrap cta-inner" data-heading>
 			<p class="pill pill-white">{t.contact.pill}</p>
-			<h2><span>{t.contact.h2a}</span><span>{t.contact.h2b}</span></h2>
+			<h2><span class="line"><span class="line-in">{t.contact.h2a}</span></span><span class="line"><span class="line-in">{t.contact.h2b}</span></span></h2>
 			<p class="cta-text">{t.contact.text}</p>
 			<div class="hero-actions">
 				<a class="btn btn-navy" href={whatsapp(lang)}>{t.hero.primary}<WaIcon /></a>
