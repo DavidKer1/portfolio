@@ -1,5 +1,6 @@
 ---
-import { copy, type Lang } from "../i18n";
+import { copy, type Lang, whatsapp } from "../i18n";
+import WaIcon from "./WaIcon.astro";
 
 interface Props {
 	lang: Lang;
@@ -11,16 +12,20 @@ const home = t.routes.home;
 ---
 
 <header class="site-header">
-	<nav class="nav-pill" aria-label={lang === "es" ? "Principal" : "Main"}>
-		<a class="wordmark" href={home}>victorsanchez<span>.mx</span></a>
-		<div class="nav-links">
-			<a class="nav-optional" href={`${home}#${t.work.id}`}>{t.nav.work}</a>
-			<a class="nav-optional" href={`${home}#${t.about.id}`}>{t.nav.about}</a>
-			<a class="nav-lang" href={t.routes.other} hreflang={t.nav.otherLang} lang={t.nav.otherLang}>{t.nav.other}</a>
-			<a class="btn btn-accent btn-pill" href={`${home}#${t.contact.id}`}>
+	<div class="header-inner">
+		<a class="logo" href={home}>Victor<span>Sanchez</span></a>
+		<nav class="nav-pill" aria-label={lang === "es" ? "Principal" : "Main"}>
+			<a href={`${home}#${t.services.id}`}>{t.nav.services}</a>
+			<a href={`${home}#${t.work.id}`}>{t.nav.work}</a>
+			<a href={`${home}#${t.process.id}`}>{t.nav.process}</a>
+			<a href={`${home}#${t.about.id}`}>{t.nav.about}</a>
+		</nav>
+		<div class="header-actions">
+			<a class="lang-btn" href={t.routes.other} hreflang={t.nav.otherLang} lang={t.nav.otherLang} aria-label={t.nav.other}>{t.nav.otherShort}</a>
+			<a class="btn btn-cream" href={whatsapp(lang)}>
 				{t.nav.cta}
-				<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" /></svg>
+				<WaIcon />
 			</a>
 		</div>
-	</nav>
+	</div>
 </header>

@@ -13,30 +13,15 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.local(),
-			name: "Geist",
-			cssVariable: "--font-geist",
+			name: "Figtree",
+			cssVariable: "--font-figtree",
 			fallbacks: ["system-ui", "sans-serif"],
 			options: {
 				variants: [
 					{
-						weight: "100 900",
+						weight: "300 900",
 						style: "normal",
-						src: ["./src/assets/fonts/geist-variable.woff2"],
-					},
-				],
-			},
-		},
-		{
-			provider: fontProviders.local(),
-			name: "Geist Mono",
-			cssVariable: "--font-geist-mono",
-			fallbacks: ["ui-monospace", "monospace"],
-			options: {
-				variants: [
-					{
-						weight: "100 900",
-						style: "normal",
-						src: ["./src/assets/fonts/geist-mono-variable.woff2"],
+						src: ["./src/assets/fonts/figtree-variable.woff2"],
 					},
 				],
 			},

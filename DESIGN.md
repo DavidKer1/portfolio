@@ -1,32 +1,39 @@
 # Diseño
 
-Victor pidió el 2026-11-06 un sitio muy parecido a marius.dev. Se replican su estructura y su estilo visual con código, textos e imágenes propios. No se copian su código, sus textos ni sus imágenes.
+Victor eligió el 2026-11-06 el estilo de usehalo.com. Se replican su estructura y su lenguaje visual con código, textos e imágenes propios.
 
 ## Estructura
 
-1. Menú flotante en forma de píldora, con "Hablemos" en ámbar.
-2. Portada con nombre y rol en mono, titular grande con degradado en la segunda línea, botón "Ver proyectos" y correo copiable. A la derecha, un recuadro para escribir por WhatsApp con sugerencias, donde marius.dev tiene su chat.
-3. Cuatro tarjetas de proceso con diagramas SVG propios: Diseño, Desarrollo, Publicación y Mantenimiento.
-4. Proyectos en tarjetas grandes: una ancha, dos medianas, una ancha y dos medianas. Debajo, "Más trabajo" en lista.
-5. "Sobre mí" con texto breve y tabla de tecnologías.
-6. Contacto con correo a la izquierda y formulario a la derecha. El formulario arma un correo y sin JavaScript se oculta.
-7. Pie con el logotipo y enlaces en píldoras.
+1. Encabezado sobre la portada: logotipo en mayúsculas, menú en píldora blanca al centro, botón de idioma y "Escríbeme" en crema.
+2. Portada con degradado cian, titular azul marino muy grueso y centrado, forma de vidrio detrás y capturas reales de proyectos flotando. Botones: WhatsApp (marino) y "Ver proyectos" (blanco). Debajo, el correo con botón de copiar.
+3. Franja con los nombres de los proyectos en mayúsculas.
+4. "Lo que hago": título en dos colores y pestañas. Cada pestaña es una tarjeta marina con texto a la izquierda y capturas a la derecha.
+5. Proyectos sobre una franja marina con borde superior curvo, en tarjetas blancas.
+6. "Cómo trabajamos": cuatro tarjetas blancas numeradas.
+7. "Sobre mí": tarjeta blanca con texto breve y tecnologías.
+8. Contacto en franja cian con borde curvo. Línea para agencias solo en inglés.
+9. Pie marino con un "VICTOR" enorme en cian.
 
 ## Tokens
 
-| Token | Valor |
-|---|---|
-| Fondo | `#0c0d0e` |
-| Superficie y tarjeta | `#141516` y `#161718` |
-| Bordes | blanco al 8 % y al 14 % |
-| Texto y secundario | `#f3f4ee` y `#b3b9b4` |
-| Acento | `#ffb224` (ámbar; Victor lo prefirió al lima el 2026-11-06) |
+| Token | Valor | Uso |
+|---|---|---|
+| `--navy` | `#062044` | Texto y botón principal |
+| `--navy-band` | `#0a2d58` | Franjas y tarjetas de servicios |
+| `--cyan` / `--cyan-light` | `#14c8f5` / `#8fe4f8` | Degradado de portada y contacto |
+| `--cyan-ink` | `#0087b8` | Primera línea de títulos grandes sobre fondo claro |
+| `--cyan-text` | `#00729b` | Texto chico cian sobre blanco (contraste AA) |
+| `--ice` | `#e8f7fc` | Fondo general |
+| `--cream` / `--orange` | `#ffe7ad` / `#ffcf7a` | Botón "Escríbeme" y píldoras |
 
-Tipografía: Geist para todo y Geist Mono para etiquetas en mayúsculas. Radios de 24 px en las tarjetas grandes, 16-18 px en los recuadros y píldoras en botones y chips.
+Tipografía: Figtree (libre, geométrica, parecida a la Centra de Halo), títulos en 800 con tracking muy cerrado y botones en mayúsculas.
+
+## Texto
+
+Corto y llano, como se le explica a un cliente por WhatsApp. Nada de eslóganes ni frases "de agencia". Victor corrige lo que no diría.
 
 ## Reglas
 
-- Poco texto y sin alardear.
-- Apuntafy es un proyecto más, no el centro.
-- Saltillo no aparece en la portada.
+- Apuntafy es un proyecto más. Saltillo no aparece en la portada.
 - Nada que no sea cierto: sin testimonios, logos ni cifras inventadas.
+- PeopleCor sin cifras ni rol actual. Turnimo fuera. Nombres de pacientes difuminados.

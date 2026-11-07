@@ -13,21 +13,29 @@ for (const boton of document.querySelectorAll<HTMLButtonElement>("[data-copy]"))
 	});
 }
 
-// Sin JavaScript, el recuadro de WhatsApp manda el texto como formulario GET.
-// Con JavaScript, las sugerencias llenan el campo y el enlace se codifica bien.
-const chat = document.querySelector<HTMLFormElement>("[data-chat]");
-if (chat) {
-	const campo = chat.querySelector<HTMLInputElement>("input[name=text]");
-	for (const chip of chat.querySelectorAll<HTMLButtonElement>("[data-chip]")) {
-		chip.addEventListener("click", () => {
-			if (!campo) return;
-			campo.value = chip.dataset.chip ?? "";
-			campo.focus();
-		});
+// Sin JavaScript se ven todas las tarjetas de servicios, una tras otra.
+const lista = document.querySelector<HTMLElement>("[data-tabs]");
+if (lista) {
+	const tabs = [...lista.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+
+	function mostrar(tab: HTMLButtonElement, enfocar: boolean) {
+		for (const otra of tabs) {
+			const activa = otra === tab;
+			otra.setAttribute("aria-selected", String(activa));
+			otra.tabIndex = activa ? 0 : -1;
+			document.getElementById(otra.getAttribute("aria-controls") ?? "")?.classList.toggle("is-active", activa);
+		}
+		if (enfocar) tab.focus();
 	}
-	chat.addEventListener("submit", (e) => {
-		e.preventDefault();
-		const texto = campo?.value.trim() || chat.dataset.default || "";
-		window.open(`${chat.action}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+
+	lista.hidden = false;
+	tabs.forEach((tab, i) => {
+		tab.addEventListener("click", () => mostrar(tab, false));
+		tab.addEventListener("keydown", (e) => {
+			const delta = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+			if (delta === 0) return;
+			e.preventDefault();
+			mostrar(tabs[(i + delta + tabs.length) % tabs.length], true);
+		});
 	});
 }

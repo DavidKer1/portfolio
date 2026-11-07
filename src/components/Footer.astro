@@ -7,23 +7,35 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = copy(lang);
-const enlaces = [
-	{ label: t.footer.email, href: `mailto:${correo}` },
-	{ label: "whatsapp", href: whatsapp(lang) },
-	{ label: "github", href: "https://github.com/DavidKer1" },
-	{ label: "linkedin", href: "https://linkedin.com/in/victor-sanchez-dev" },
-	{ label: t.nav.other.toLowerCase(), href: t.routes.other },
+const home = t.routes.home;
+const secciones = [
+	{ label: t.nav.services, href: `${home}#${t.services.id}` },
+	{ label: t.nav.work, href: `${home}#${t.work.id}` },
+	{ label: t.nav.process, href: `${home}#${t.process.id}` },
+	{ label: t.nav.about, href: `${home}#${t.about.id}` },
+];
+const contacto = [
+	{ label: "WhatsApp", href: whatsapp(lang) },
+	{ label: correo, href: `mailto:${correo}` },
+	{ label: "LinkedIn", href: "https://linkedin.com/in/victor-sanchez-dev" },
+	{ label: "GitHub", href: "https://github.com/DavidKer1" },
+	{ label: t.nav.other, href: t.routes.other },
 ];
 ---
 
-<footer class="site-footer wrap">
-	<div class="footer-row">
-		<a class="wordmark" href={t.routes.home}>victorsanchez<span>.mx</span></a>
-		<ul class="footer-links">
-			{enlaces.map((e) => (
-				<li><a class="chip-link" href={e.href}>{e.label}</a></li>
-			))}
-		</ul>
+<footer class="site-footer">
+	<div class="wrap">
+		<div class="footer-cols">
+			<ul>
+				{secciones.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
+			</ul>
+			<ul>
+				{contacto.map((c) => <li><a href={c.href}>{c.label}</a></li>)}
+			</ul>
+		</div>
+		<div class="footer-bottom">
+			<p class="footer-logo" aria-hidden="true">VICTOR</p>
+			<p class="footer-note">© 2026 {t.footer.rights}</p>
+		</div>
 	</div>
-	<p class="footer-note">© 2026 {t.footer.rights}</p>
 </footer>
