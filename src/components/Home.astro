@@ -1,9 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import apuntafy from "../assets/work/apuntafy-producto.webp";
-import restBurritos from "../assets/restaurantes/burritos.jpg";
-import restCafe from "../assets/restaurantes/cafe.jpg";
-import restFonda from "../assets/restaurantes/fonda.jpg";
 import apuntafyMovil from "../assets/work/apuntafy-movil.webp";
 import peoplecor from "../assets/work/peoplecor.webp";
 import scholastico from "../assets/work/scholastico.webp";
@@ -11,6 +8,7 @@ import sonrisas from "../assets/work/sonrisas.webp";
 import tintely1 from "../assets/work/tintely-1.jpg";
 import tintely2 from "../assets/work/tintely-2.jpg";
 import zenlift from "../assets/work/zenlift.webp";
+import { catalogos, giros } from "../catalogos";
 import { copy, correo, type Lang, whatsapp } from "../i18n";
 import Base from "../layouts/Base.astro";
 import WaIcon from "./WaIcon.astro";
@@ -142,19 +140,32 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 					</article>
 				))}
 			</div>
-			<a class="feature-card" href={t.restaurants.path}>
-				<div class="feature-text">
-					<p class="project-kind">{t.work.feature.kind}</p>
-					<h3>{t.work.feature.name}</h3>
-					<p>{t.work.feature.text}</p>
-					<span class="project-link">{t.work.feature.link} <span set:html={flecha} /></span>
+			<div class="catalogs">
+				<div class="catalogs-head">
+					<h3>{t.work.catalogs.title}</h3>
+					<p>{t.work.catalogs.text}</p>
 				</div>
-				<div class="feature-media" aria-hidden="true">
-					<Image class="fm fm-1" src={restFonda} alt="" widths={[300, 600]} sizes="(min-width: 760px) 22vw, 50vw" loading="lazy" />
-					<Image class="fm fm-2" src={restCafe} alt="" widths={[300, 600]} sizes="(min-width: 760px) 22vw, 50vw" loading="lazy" />
-					<Image class="fm fm-3" src={restBurritos} alt="" widths={[400, 800]} sizes="(min-width: 760px) 28vw, 70vw" loading="lazy" />
-				</div>
-			</a>
+				<ul class="catalog-grid">
+					{giros.map((g) => {
+						const c = catalogos[g];
+						return (
+							<li>
+								<a class="catalog-card" href={t[g].path}>
+									<div class="catalog-media">
+										<Image src={c.portadas[c.tarjeta]} alt="" widths={[320, 640]} sizes="(min-width: 1000px) 20vw, 72vw" loading="lazy" />
+									</div>
+									<div class="catalog-body">
+										<p class="project-kind">{t.work.catalogs.count}</p>
+										<h4>{t[g].short}</h4>
+										<p>{t[g].card}</p>
+										<span class="project-link">{t.work.catalogs.link} <span set:html={flecha} /></span>
+									</div>
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 		</div>
 	</section>
 

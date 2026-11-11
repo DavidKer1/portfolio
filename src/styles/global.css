@@ -861,80 +861,91 @@ html:not(.js) .copy {
 	color: var(--cyan-text);
 }
 
-/* Catálogo de restaurantes en la portada */
+/* Catálogos de demos por giro, al final de Proyectos */
 
-.feature-card {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-	align-items: center;
-	gap: 24px;
-	margin-top: 24px;
-	overflow: hidden;
-	border-radius: 24px;
-	background: var(--white);
-	text-decoration: none;
-	transition: transform 0.2s;
+.catalogs {
+	margin-top: clamp(56px, 7vw, 88px);
 }
 
-.feature-card:hover {
-	transform: translateY(-4px);
-}
-
-.feature-text {
+.catalogs-head {
 	display: flex;
-	flex-direction: column;
-	padding: clamp(26px, 4vw, 48px);
+	flex-wrap: wrap;
+	align-items: end;
+	justify-content: space-between;
+	gap: 12px 40px;
 }
 
-.feature-text h3 {
-	margin-top: 8px;
+.catalogs-head h3 {
+	color: var(--white);
 	font-size: clamp(1.75rem, 3vw, 2.5rem);
 	line-height: 1.05;
 	letter-spacing: -0.04em;
 }
 
-.feature-text p:not(.project-kind) {
-	margin-top: 10px;
-	color: var(--navy-soft);
-	font-size: 1.125rem;
+.catalogs-head p {
+	max-width: 34em;
+	color: #d4e6f3;
 }
 
-.feature-media {
-	position: relative;
+.catalog-grid {
+	display: grid;
+	grid-auto-columns: minmax(0, 1fr);
+	grid-auto-flow: column;
+	gap: 16px;
+	margin-top: 28px;
+}
+
+.catalog-card {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
-	min-height: 300px;
+	overflow: hidden;
+	border-radius: 20px;
+	background: var(--white);
+	text-decoration: none;
+	transition: transform 0.2s;
+}
+
+.catalog-card:hover {
+	transform: translateY(-4px);
+}
+
+.catalog-media {
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
 	background: var(--ice);
 }
 
-.fm {
-	position: absolute;
-	width: 58%;
-	height: auto;
-	aspect-ratio: 16 / 10;
+.catalog-media img {
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
 	object-position: top;
-	border: 5px solid var(--white);
-	border-radius: 14px;
-	box-shadow: 0 18px 40px rgb(6 32 68 / 18%);
 }
 
-.fm-1 {
-	top: 10%;
-	left: 6%;
-	rotate: -5deg;
+.catalog-body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding: 18px 20px 20px;
 }
 
-.fm-2 {
-	top: 14%;
-	right: 4%;
-	rotate: 4deg;
+.catalog-body h4 {
+	margin: 6px 0 0;
+	font-size: 1.375rem;
+	font-weight: 800;
+	line-height: 1.1;
+	letter-spacing: -0.03em;
 }
 
-.fm-3 {
-	bottom: 8%;
-	left: 22%;
-	width: 64%;
-	rotate: -1deg;
+.catalog-body p:not(.project-kind) {
+	margin-top: 6px;
+	color: var(--navy-soft);
+	font-size: 0.9375rem;
+}
+
+.catalog-body .project-link {
+	padding-top: 14px;
 }
 
 /* Página de restaurantes */
@@ -1213,7 +1224,7 @@ html:not(.js) .copy {
 
 	.btn:hover,
 	.project-card:hover,
-	.feature-card:hover {
+	.catalog-card:hover {
 		transform: none;
 	}
 }
@@ -1246,6 +1257,19 @@ html:not(.js) .copy {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
+	.catalog-grid {
+		grid-auto-columns: minmax(250px, 40%);
+		margin-inline: calc(-1 * var(--gutter));
+		padding: 6px var(--gutter) 12px;
+		overflow-x: auto;
+		scroll-padding-inline: var(--gutter);
+		scroll-snap-type: x mandatory;
+	}
+
+	.catalog-grid li {
+		scroll-snap-align: start;
+	}
+
 	.steps {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -1267,13 +1291,12 @@ html:not(.js) .copy {
 	}
 
 	.project-grid,
-	.steps,
-	.feature-card {
+	.steps {
 		grid-template-columns: minmax(0, 1fr);
 	}
 
-	.feature-media {
-		min-height: 240px;
+	.catalog-grid {
+		grid-auto-columns: 74%;
 	}
 
 	.rest-nota {

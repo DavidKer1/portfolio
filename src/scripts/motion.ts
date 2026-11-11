@@ -81,7 +81,8 @@ function alHacerScroll() {
 	subir(".tabs", 30);
 	subir(".panels", 90);
 	subir(".project-card", 90);
-	subir(".feature-card", 90);
+	subir(".catalogs-head", 30);
+	subir(".catalog-grid li", 70);
 	subir(".steps li", 70);
 	subir(".about-body > *", 30);
 	subir(".footer-cols ul", 30);
