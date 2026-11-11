@@ -17,6 +17,12 @@ import hotel from "./assets/hospedaje-y-eventos/hotel.jpg";
 import parras from "./assets/hospedaje-y-eventos/parras.jpg";
 import salon from "./assets/hospedaje-y-eventos/salon.jpg";
 import terraza from "./assets/hospedaje-y-eventos/terraza.jpg";
+import barberia from "./assets/belleza/barberia.jpg";
+import clinica from "./assets/belleza/clinica.jpg";
+import colorista from "./assets/belleza/colorista.jpg";
+import novias from "./assets/belleza/novias.jpg";
+import spa from "./assets/belleza/spa.jpg";
+import tatuajes from "./assets/belleza/tatuajes.jpg";
 import fierro from "./assets/fitness/fierro.jpg";
 import laEsquina from "./assets/fitness/la-esquina.jpg";
 import laja from "./assets/fitness/laja.jpg";
@@ -25,7 +31,7 @@ import tanda from "./assets/fitness/tanda.jpg";
 import vertebra from "./assets/fitness/vertebra.jpg";
 
 // Catálogos de demos por giro. Los textos viven en src/i18n bajo la misma clave.
-export type Giro = "restaurants" | "realEstate" | "stays" | "fitness";
+export type Giro = "restaurants" | "realEstate" | "stays" | "beauty" | "fitness";
 
 interface Catalogo {
 	// Dominio donde viven las demos; cada tarjeta enlaza a `${demos}/${id}/`.
@@ -60,6 +66,12 @@ export const catalogos: Record<Giro, Catalogo> = {
 		tarjeta: "salon",
 		flotantes: ["salon", "hotel", "cabanas", "hacienda"],
 	},
+	beauty: {
+		demos: "https://belleza.victorsanchez.mx",
+		portadas: { barberia, tatuajes, novias, colorista, spa, clinica },
+		tarjeta: "colorista",
+		flotantes: ["colorista", "tatuajes", "spa", "barberia"],
+	},
 	fitness: {
 		demos: "https://fitness.victorsanchez.mx",
 		portadas: { fierro, "la-esquina": laEsquina, tanda, laja, rodada, vertebra },
@@ -69,4 +81,4 @@ export const catalogos: Record<Giro, Catalogo> = {
 };
 
 // Orden en la portada y en el pie.
-export const giros: Giro[] = ["restaurants", "realEstate", "stays", "fitness"];
+export const giros: Giro[] = ["restaurants", "realEstate", "stays", "beauty", "fitness"];

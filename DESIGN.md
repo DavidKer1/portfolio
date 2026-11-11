@@ -21,6 +21,7 @@ Al final de Proyectos está el bloque «Páginas de ejemplo por giro»: una tarj
 | Restaurantes | `/restaurantes/` · `/en/restaurants/` | `demos.victorsanchez.mx` (repo `demos-restaurantes`) |
 | Bienes raíces | `/bienes-raices/` · `/en/real-estate/` | `bienes-raices.victorsanchez.mx` |
 | Hospedaje y eventos | `/hospedaje-y-eventos/` · `/en/stays-and-venues/` | `hospedaje.victorsanchez.mx` |
+| Belleza | `/belleza/` · `/en/beauty/` | `belleza.victorsanchez.mx` |
 | Gimnasios y estudios | `/fitness/` · `/en/fitness/` | `fitness.victorsanchez.mx` |
 
 ## Tokens
