@@ -1,25 +1,24 @@
 ---
 import { Image } from "astro:assets";
-import asador from "../assets/restaurantes/asador.jpg";
-import burritos from "../assets/restaurantes/burritos.jpg";
-import cafe from "../assets/restaurantes/cafe.jpg";
-import fonda from "../assets/restaurantes/fonda.jpg";
-import hamburguesas from "../assets/restaurantes/hamburguesas.jpg";
-import pizzeria from "../assets/restaurantes/pizzeria.jpg";
+import { catalogos, type Giro } from "../catalogos";
 import { copy, correo, type Lang, telefono } from "../i18n";
 import Base from "../layouts/Base.astro";
 import WaIcon from "./WaIcon.astro";
 
 interface Props {
 	lang: Lang;
+	giro: Giro;
 }
 
-const { lang } = Astro.props;
+const { lang, giro } = Astro.props;
 const t = copy(lang);
-const r = t.restaurants;
-const demos = "https://demos.victorsanchez.mx";
+const r = t[giro];
+const c = catalogos[giro];
+const demos = c.demos;
+const ruta = (id: string) => (lang === "en" && c.rutasEn?.[id]) || id;
 const whatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(r.whatsapp)}`;
-const portadas: Record<string, ImageMetadata> = { burritos, pizzeria, hamburguesas, fonda, asador, cafe };
+const portadas = c.portadas;
+const [f1, f2, f3, f4] = c.flotantes.map((id) => portadas[id]);
 const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
 ---
 
@@ -27,10 +26,10 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 	<section class="hero">
 		<div class="hero-glass-wrap" aria-hidden="true"><div class="hero-glass"></div></div>
 		<div class="floats" aria-hidden="true">
-			<div class="float-wrap f1" data-speed="-90"><div class="float"><Image src={burritos} alt="" widths={[300, 600]} sizes="250px" priority /></div></div>
-			<div class="float-wrap f2" data-speed="-60"><div class="float"><Image src={fonda} alt="" widths={[300, 600]} sizes="230px" priority /></div></div>
-			<div class="float-wrap f3" data-speed="-150"><div class="float"><Image src={pizzeria} alt="" widths={[300, 600]} sizes="220px" loading="lazy" /></div></div>
-			<div class="float-wrap f4" data-speed="-190"><div class="float"><Image src={cafe} alt="" widths={[240, 480]} sizes="180px" loading="lazy" /></div></div>
+			<div class="float-wrap f1" data-speed="-90"><div class="float"><Image src={f1} alt="" widths={[300, 600]} sizes="250px" priority /></div></div>
+			<div class="float-wrap f2" data-speed="-60"><div class="float"><Image src={f2} alt="" widths={[300, 600]} sizes="230px" priority /></div></div>
+			<div class="float-wrap f3" data-speed="-150"><div class="float"><Image src={f3} alt="" widths={[300, 600]} sizes="220px" loading="lazy" /></div></div>
+			<div class="float-wrap f4" data-speed="-190"><div class="float"><Image src={f4} alt="" widths={[240, 480]} sizes="180px" loading="lazy" /></div></div>
 		</div>
 		<div class="wrap hero-inner">
 			<p class="pill pill-white rest-pill">{r.pill}</p>
@@ -63,7 +62,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 							<p class="project-kind">{d.kind}</p>
 							<h3>{d.name}</h3>
 							<p>{d.text}</p>
-							<a class="project-link" href={`${demos}/${d.id}/`} target="_blank" rel="noopener">{r.open} <span set:html={flecha} /></a>
+							<a class="project-link" href={`${demos}/${ruta(d.id)}/`} target="_blank" rel="noopener">{r.open} <span set:html={flecha} /></a>
 						</div>
 					</article>
 				))}
