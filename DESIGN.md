@@ -14,7 +14,14 @@ Victor eligió el 2026-11-06 el estilo de usehalo.com. Se replican su estructura
 8. Contacto en franja cian con borde curvo. Línea para agencias solo en inglés.
 9. Pie marino con un "VICTOR" enorme en cian.
 
-Al final de Proyectos hay una tarjeta ancha que lleva a «Páginas para restaurantes» (`/restaurantes/` y `/en/restaurants/`). Esa página repite la portada (vidrio y capturas flotando), muestra las seis demos en tarjetas sobre la franja marina, lo que incluye cada página y el contacto. Las demos viven en `demos.victorsanchez.mx`, en el repo aparte `demos-restaurantes`.
+Al final de Proyectos está el bloque «Páginas de ejemplo por giro»: una tarjeta por catálogo, en una fila (carrusel horizontal en tablet y celular), con la portada de una demo, «6 ejemplos», el giro y lo que trae. El pie tiene una columna con los mismos catálogos. Cada catálogo es una página (`src/components/Catalogo.astro`) que repite la portada (vidrio y capturas flotando), muestra las seis demos en tarjetas sobre la franja marina, lo que incluye cada página y el contacto. Los textos van en `src/i18n` bajo la clave del giro, y el dominio de las demos, las portadas y las capturas flotantes en `src/catalogos.ts`.
+
+| Giro | Página | Demos |
+|---|---|---|
+| Restaurantes | `/restaurantes/` · `/en/restaurants/` | `demos.victorsanchez.mx` (repo `demos-restaurantes`) |
+| Bienes raíces | `/bienes-raices/` · `/en/real-estate/` | `bienes-raices.victorsanchez.mx` |
+| Hospedaje y eventos | `/hospedaje-y-eventos/` · `/en/stays-and-venues/` | `hospedaje.victorsanchez.mx` |
+| Gimnasios y estudios | `/fitness/` · `/en/fitness/` | `fitness.victorsanchez.mx` |
 
 ## Tokens
 
