@@ -17,9 +17,15 @@ import hotel from "./assets/hospedaje-y-eventos/hotel.jpg";
 import parras from "./assets/hospedaje-y-eventos/parras.jpg";
 import salon from "./assets/hospedaje-y-eventos/salon.jpg";
 import terraza from "./assets/hospedaje-y-eventos/terraza.jpg";
+import fierro from "./assets/fitness/fierro.jpg";
+import laEsquina from "./assets/fitness/la-esquina.jpg";
+import laja from "./assets/fitness/laja.jpg";
+import rodada from "./assets/fitness/rodada.jpg";
+import tanda from "./assets/fitness/tanda.jpg";
+import vertebra from "./assets/fitness/vertebra.jpg";
 
 // Catálogos de demos por giro. Los textos viven en src/i18n bajo la misma clave.
-export type Giro = "restaurants" | "realEstate" | "stays";
+export type Giro = "restaurants" | "realEstate" | "stays" | "fitness";
 
 interface Catalogo {
 	// Dominio donde viven las demos; cada tarjeta enlaza a `${demos}/${id}/`.
@@ -54,7 +60,13 @@ export const catalogos: Record<Giro, Catalogo> = {
 		tarjeta: "salon",
 		flotantes: ["salon", "hotel", "cabanas", "hacienda"],
 	},
+	fitness: {
+		demos: "https://fitness.victorsanchez.mx",
+		portadas: { fierro, "la-esquina": laEsquina, tanda, laja, rodada, vertebra },
+		tarjeta: "la-esquina",
+		flotantes: ["la-esquina", "rodada", "fierro", "vertebra"],
+	},
 };
 
 // Orden en la portada y en el pie.
-export const giros: Giro[] = ["restaurants", "realEstate", "stays"];
+export const giros: Giro[] = ["restaurants", "realEstate", "stays", "fitness"];
