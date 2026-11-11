@@ -14,6 +14,8 @@ Victor eligió el 2026-11-06 el estilo de usehalo.com. Se replican su estructura
 8. Contacto en franja cian con borde curvo. Línea para agencias solo en inglés.
 9. Pie marino con un "VICTOR" enorme en cian.
 
+Al final de Proyectos hay una tarjeta ancha que lleva a «Páginas para restaurantes» (`/restaurantes/` y `/en/restaurants/`). Esa página repite la portada (vidrio y capturas flotando), muestra las seis demos en tarjetas sobre la franja marina, lo que incluye cada página y el contacto. Las demos viven en `demos.victorsanchez.mx`, en el repo aparte `demos-restaurantes`.
+
 ## Tokens
 
 | Token | Valor | Uso |

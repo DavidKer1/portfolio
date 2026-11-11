@@ -139,6 +139,7 @@ html.lenis {
 
 html.anim .site-header,
 html.anim .hero-glass,
+html.anim .hero .rest-pill,
 html.anim .hero .hero-lead,
 html.anim .hero .hero-actions,
 html.anim .hero .hero-mail,
@@ -860,6 +861,105 @@ html:not(.js) .copy {
 	color: var(--cyan-text);
 }
 
+/* Catálogo de restaurantes en la portada */
+
+.feature-card {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+	align-items: center;
+	gap: 24px;
+	margin-top: 24px;
+	overflow: hidden;
+	border-radius: 24px;
+	background: var(--white);
+	text-decoration: none;
+	transition: transform 0.2s;
+}
+
+.feature-card:hover {
+	transform: translateY(-4px);
+}
+
+.feature-text {
+	display: flex;
+	flex-direction: column;
+	padding: clamp(26px, 4vw, 48px);
+}
+
+.feature-text h3 {
+	margin-top: 8px;
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
+	line-height: 1.05;
+	letter-spacing: -0.04em;
+}
+
+.feature-text p:not(.project-kind) {
+	margin-top: 10px;
+	color: var(--navy-soft);
+	font-size: 1.125rem;
+}
+
+.feature-media {
+	position: relative;
+	height: 100%;
+	min-height: 300px;
+	background: var(--ice);
+}
+
+.fm {
+	position: absolute;
+	width: 58%;
+	height: auto;
+	aspect-ratio: 16 / 10;
+	object-fit: cover;
+	object-position: top;
+	border: 5px solid var(--white);
+	border-radius: 14px;
+	box-shadow: 0 18px 40px rgb(6 32 68 / 18%);
+}
+
+.fm-1 {
+	top: 10%;
+	left: 6%;
+	rotate: -5deg;
+}
+
+.fm-2 {
+	top: 14%;
+	right: 4%;
+	rotate: 4deg;
+}
+
+.fm-3 {
+	bottom: 8%;
+	left: 22%;
+	width: 64%;
+	rotate: -1deg;
+}
+
+/* Página de restaurantes */
+
+.rest-pill {
+	margin-bottom: 22px;
+}
+
+.rest-nota {
+	max-width: 34em;
+	margin-inline: auto;
+}
+
+.media-rest img {
+	object-position: top;
+}
+
+.rest-incluye h3 {
+	margin-top: 0;
+}
+
+.rest-cta {
+	margin-top: clamp(90px, 10vw, 130px);
+}
+
 /* Pasos */
 
 .process {
@@ -1112,7 +1212,8 @@ html:not(.js) .copy {
 	}
 
 	.btn:hover,
-	.project-card:hover {
+	.project-card:hover,
+	.feature-card:hover {
 		transform: none;
 	}
 }
@@ -1166,8 +1267,17 @@ html:not(.js) .copy {
 	}
 
 	.project-grid,
-	.steps {
+	.steps,
+	.feature-card {
 		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.feature-media {
+		min-height: 240px;
+	}
+
+	.rest-nota {
+		margin-left: 0;
 	}
 
 	.tabs {

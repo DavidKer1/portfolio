@@ -31,7 +31,7 @@ function entrada() {
 	tl.from(".hero-glass", { scale: 0.55, rotate: -40, autoAlpha: 0, duration: 2 }, 0)
 		.from(".hero h1 .line-in", { yPercent: 115, duration: 1.3, stagger: 0.12 }, 0.15)
 		.from(
-			[".hero .hero-lead", ".hero .hero-actions", ".hero .hero-mail"],
+			[".hero .rest-pill", ".hero .hero-lead", ".hero .hero-actions", ".hero .hero-mail"],
 			{ y: 24, autoAlpha: 0, duration: 1.1, stagger: 0.1 },
 			0.55,
 		)
@@ -81,6 +81,7 @@ function alHacerScroll() {
 	subir(".tabs", 30);
 	subir(".panels", 90);
 	subir(".project-card", 90);
+	subir(".feature-card", 90);
 	subir(".steps li", 70);
 	subir(".about-body > *", 30);
 	subir(".footer-cols ul", 30);

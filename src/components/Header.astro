@@ -4,9 +4,10 @@ import WaIcon from "./WaIcon.astro";
 
 interface Props {
 	lang: Lang;
+	otherPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, otherPath } = Astro.props;
 const t = copy(lang);
 const home = t.routes.home;
 ---
@@ -21,7 +22,7 @@ const home = t.routes.home;
 			<a href={`${home}#${t.about.id}`}>{t.nav.about}</a>
 		</nav>
 		<div class="header-actions">
-			<a class="lang-btn" href={t.routes.other} hreflang={t.nav.otherLang} lang={t.nav.otherLang} aria-label={t.nav.other}>{t.nav.otherShort}</a>
+			<a class="lang-btn" href={otherPath ?? t.routes.other} hreflang={t.nav.otherLang} lang={t.nav.otherLang} aria-label={t.nav.other}>{t.nav.otherShort}</a>
 			<a class="btn btn-cream" href={whatsapp(lang)}>
 				{t.nav.cta}
 				<WaIcon />
