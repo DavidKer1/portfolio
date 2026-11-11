@@ -11,9 +11,15 @@ import despacho from "./assets/bienes-raices/despacho.jpg";
 import locales from "./assets/bienes-raices/locales.jpg";
 import naves from "./assets/bienes-raices/naves.jpg";
 import torre from "./assets/bienes-raices/torre.jpg";
+import cabanas from "./assets/hospedaje-y-eventos/cabanas.jpg";
+import hacienda from "./assets/hospedaje-y-eventos/hacienda.jpg";
+import hotel from "./assets/hospedaje-y-eventos/hotel.jpg";
+import parras from "./assets/hospedaje-y-eventos/parras.jpg";
+import salon from "./assets/hospedaje-y-eventos/salon.jpg";
+import terraza from "./assets/hospedaje-y-eventos/terraza.jpg";
 
 // Catálogos de demos por giro. Los textos viven en src/i18n bajo la misma clave.
-export type Giro = "restaurants" | "realEstate";
+export type Giro = "restaurants" | "realEstate" | "stays";
 
 interface Catalogo {
 	// Dominio donde viven las demos; cada tarjeta enlaza a `${demos}/${id}/`.
@@ -42,7 +48,13 @@ export const catalogos: Record<Giro, Catalogo> = {
 		// Andén Sur tiene versión en inglés.
 		rutasEn: { naves: "naves/en" },
 	},
+	stays: {
+		demos: "https://hospedaje.victorsanchez.mx",
+		portadas: { salon, terraza, cabanas, parras, hotel, hacienda },
+		tarjeta: "salon",
+		flotantes: ["salon", "hotel", "cabanas", "hacienda"],
+	},
 };
 
 // Orden en la portada y en el pie.
-export const giros: Giro[] = ["restaurants", "realEstate"];
+export const giros: Giro[] = ["restaurants", "realEstate", "stays"];
