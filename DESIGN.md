@@ -24,6 +24,18 @@ Al final de Proyectos está el bloque «Páginas de ejemplo por giro»: una tarj
 | Belleza | `/belleza/` · `/en/beauty/` | `belleza.victorsanchez.mx` |
 | Gimnasios y estudios | `/fitness/` · `/en/fitness/` | `fitness.victorsanchez.mx` |
 
+Cada catálogo tiene su color y su forma de vidrio; lo demás es igual en los cinco (Figtree, marino, franjas, capturas y animación). Victor lo aprobó el 2026-11-11. El degradado de la portada y del contacto va de `tono[0]` a `tono[1]` (en `src/catalogos.ts`). `tono[1]` también pinta las píldoras de la página y la tarjeta del catálogo en la portada del sitio, y `tono[0]` la primera línea del título sobre la franja marina y el `theme-color`. `Base.astro` pone `data-giro` y las variables `--tono-a` y `--tono-b` en `<html>`. La forma del vidrio está en `global.css`. La portada principal se queda cian.
+
+| Giro | Tono | Vidrio |
+|---|---|---|
+| Restaurantes | Ámbar de maíz `#ffc65a` → `#ffe7b5` | Plato (círculo). El botón «Escríbeme» va blanco porque el crema se pierde sobre el ámbar. |
+| Bienes raíces | Cielo de render `#a9c4d8` → `#e4ecf2` | Arco de ventana, derecho |
+| Hospedaje y eventos | Salvia de la sierra `#9fd3b6` → `#def1e6` | Óvalo ancho (horizonte) |
+| Belleza | Rosa polvo `#f5b9c4` → `#fde7eb` | Espejo ovalado vertical |
+| Gimnasios y estudios | Coral de pista `#ffab88` → `#ffe2d6` | Disco de pesa, con hueco |
+
+El texto marino tiene contraste de 8.8:1 o más sobre cada tono, y cada `tono[0]` tiene 7.5:1 o más sobre la franja marina.
+
 ## Tokens
 
 | Token | Valor | Uso |

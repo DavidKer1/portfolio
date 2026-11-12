@@ -43,6 +43,10 @@ interface Catalogo {
 	flotantes: [string, string, string, string];
 	// Rutas distintas para la página en inglés (por ejemplo, una demo con versión en inglés).
 	rutasEn?: Record<string, string>;
+	// Color del giro: degradado de la portada y del contacto, de arriba abajo. El segundo
+	// tono también pinta las píldoras de la página y la tarjeta del catálogo en la portada.
+	// La forma del vidrio de cada giro está en global.css.
+	tono: [string, string];
 }
 
 export const catalogos: Record<Giro, Catalogo> = {
@@ -51,6 +55,8 @@ export const catalogos: Record<Giro, Catalogo> = {
 		portadas: { burritos, pizzeria, hamburguesas, fonda, asador, cafe },
 		tarjeta: "burritos",
 		flotantes: ["burritos", "fonda", "pizzeria", "cafe"],
+		// Ámbar de maíz.
+		tono: ["#ffc65a", "#ffe7b5"],
 	},
 	realEstate: {
 		demos: "https://bienes-raices.victorsanchez.mx",
@@ -59,24 +65,32 @@ export const catalogos: Record<Giro, Catalogo> = {
 		flotantes: ["casas", "torre", "locales", "campestre"],
 		// Andén Sur tiene versión en inglés.
 		rutasEn: { naves: "naves/en" },
+		// Cielo de render, azul grisáceo.
+		tono: ["#a9c4d8", "#e4ecf2"],
 	},
 	stays: {
 		demos: "https://hospedaje.victorsanchez.mx",
 		portadas: { salon, terraza, cabanas, parras, hotel, hacienda },
 		tarjeta: "salon",
 		flotantes: ["salon", "hotel", "cabanas", "hacienda"],
+		// Salvia de la sierra.
+		tono: ["#9fd3b6", "#def1e6"],
 	},
 	beauty: {
 		demos: "https://belleza.victorsanchez.mx",
 		portadas: { barberia, tatuajes, novias, colorista, spa, clinica },
 		tarjeta: "colorista",
 		flotantes: ["colorista", "tatuajes", "spa", "barberia"],
+		// Rosa polvo.
+		tono: ["#f5b9c4", "#fde7eb"],
 	},
 	fitness: {
 		demos: "https://fitness.victorsanchez.mx",
 		portadas: { fierro, "la-esquina": laEsquina, tanda, laja, rodada, vertebra },
 		tarjeta: "la-esquina",
 		flotantes: ["la-esquina", "rodada", "fierro", "vertebra"],
+		// Coral de pista, más bajo que el de la prueba.
+		tono: ["#ffab88", "#ffe2d6"],
 	},
 };
 

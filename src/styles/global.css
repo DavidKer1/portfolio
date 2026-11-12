@@ -358,7 +358,7 @@ html:not(.js) .copy {
 	padding-top: 210px;
 	padding-bottom: 120px;
 	overflow: hidden;
-	background: linear-gradient(180deg, var(--cyan) 0%, var(--cyan-light) 100%);
+	background: linear-gradient(180deg, var(--tono-a, var(--cyan)) 0%, var(--tono-b, var(--cyan-light)) 100%);
 	isolation: isolate;
 }
 
@@ -901,7 +901,8 @@ html:not(.js) .copy {
 	height: 100%;
 	overflow: hidden;
 	border-radius: 20px;
-	background: var(--white);
+	/* El tono claro de su giro, el mismo con el que termina la portada del catálogo. */
+	background: var(--tono-b, var(--white));
 	text-decoration: none;
 	transition: transform 0.2s;
 }
@@ -969,6 +970,72 @@ html:not(.js) .copy {
 
 .rest-cta {
 	margin-top: clamp(90px, 10vw, 130px);
+}
+
+/* Cada catálogo tiene su giro: el color viene de src/catalogos.ts (--tono-a y --tono-b
+   en <html>) y aquí va la forma del vidrio, que sale del oficio. Todo lo demás es igual. */
+
+html[data-giro] .pill-yellow,
+html[data-giro] .pill-blue {
+	background: var(--tono-b);
+}
+
+/* Sobre la franja marina, la primera línea del título va en el color del giro. */
+html[data-giro] .on-navy .c {
+	color: var(--tono-a);
+}
+
+/* Sobre el ámbar, el botón crema del encabezado se pierde. */
+html[data-giro="restaurants"] .site-header .btn-cream {
+	background: var(--white);
+}
+
+/* Restaurantes: un plato. */
+html[data-giro="restaurants"] .hero-glass {
+	border-radius: 50%;
+}
+
+/* Bienes raíces: un arco de ventana, derecho. */
+html[data-giro="realEstate"] .hero-glass {
+	top: 120px;
+	width: min(520px, 70vw);
+	aspect-ratio: 0.82;
+	border-radius: 50% 50% 0 0 / 36% 36% 0 0;
+	transform: none;
+}
+
+/* Hospedaje y eventos: un horizonte. */
+html[data-giro="stays"] .hero-glass {
+	top: 190px;
+	width: min(880px, 92vw);
+	aspect-ratio: 1.6;
+	border-radius: 50%;
+	transform: rotate(-4deg);
+}
+
+/* Belleza: un espejo de tocador. */
+html[data-giro="beauty"] .hero-glass {
+	top: 105px;
+	width: min(480px, 64vw);
+	aspect-ratio: 0.74;
+	border-radius: 50%;
+	transform: rotate(-6deg);
+}
+
+/* Fitness: un disco de pesa, con su hueco y el canto del hueco. */
+html[data-giro="fitness"] .hero-glass {
+	border-radius: 50%;
+	-webkit-mask: radial-gradient(circle closest-side, transparent 0 36%, #000 calc(36% + 1px));
+	mask: radial-gradient(circle closest-side, transparent 0 36%, #000 calc(36% + 1px));
+}
+
+/* El hueco mide 36% del radio: el canto va justo afuera, a 32% de cada lado. */
+html[data-giro="fitness"] .hero-glass::after {
+	content: "";
+	position: absolute;
+	inset: calc(32% - 2px);
+	border: 2px solid rgb(255 255 255 / 55%);
+	border-radius: 50%;
 }
 
 /* Pasos */
@@ -1073,7 +1140,7 @@ html:not(.js) .copy {
 	padding-top: clamp(110px, 12vw, 160px);
 	padding-bottom: clamp(90px, 10vw, 130px);
 	border-radius: 50% 50% 0 0 / var(--arc, clamp(48px, 7vw, 120px)) var(--arc, clamp(48px, 7vw, 120px)) 0 0;
-	background: linear-gradient(180deg, var(--cyan) 0%, var(--cyan-light) 100%);
+	background: linear-gradient(180deg, var(--tono-a, var(--cyan)) 0%, var(--tono-b, var(--cyan-light)) 100%);
 }
 
 .cta-inner {

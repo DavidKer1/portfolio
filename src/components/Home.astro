@@ -150,7 +150,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 						const c = catalogos[g];
 						return (
 							<li>
-								<a class="catalog-card" href={t[g].path}>
+								<a class="catalog-card" href={t[g].path} style={`--tono-b: ${c.tono[1]}`}>
 									<div class="catalog-media">
 										<Image src={c.portadas[c.tarjeta]} alt="" widths={[320, 640]} sizes="(min-width: 1000px) 20vw, 72vw" loading="lazy" />
 									</div>
