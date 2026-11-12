@@ -29,9 +29,15 @@ import laja from "./assets/fitness/laja.jpg";
 import rodada from "./assets/fitness/rodada.jpg";
 import tanda from "./assets/fitness/tanda.jpg";
 import vertebra from "./assets/fitness/vertebra.jpg";
+import alameda from "./assets/profesionales/alameda.jpg";
+import calicanto from "./assets/profesionales/calicanto.jpg";
+import capaCero from "./assets/profesionales/capa-cero.jpg";
+import cosquillas from "./assets/profesionales/cosquillas.jpg";
+import diecisiete from "./assets/profesionales/diecisiete.jpg";
+import hocico from "./assets/profesionales/hocico.jpg";
 
 // Catálogos de demos por giro. Los textos viven en src/i18n bajo la misma clave.
-export type Giro = "restaurants" | "realEstate" | "stays" | "beauty" | "fitness";
+export type Giro = "restaurants" | "realEstate" | "stays" | "beauty" | "fitness" | "professionals";
 
 interface Catalogo {
 	// Dominio donde viven las demos; cada tarjeta enlaza a `${demos}/${id}/`.
@@ -92,7 +98,15 @@ export const catalogos: Record<Giro, Catalogo> = {
 		// Coral de pista, más bajo que el de la prueba.
 		tono: ["#ffab88", "#ffe2d6"],
 	},
+	professionals: {
+		demos: "https://profesionales.victorsanchez.mx",
+		portadas: { hocico, alameda, cosquillas, diecisiete, "capa-cero": capaCero, calicanto },
+		tarjeta: "hocico",
+		flotantes: ["hocico", "diecisiete", "calicanto", "cosquillas"],
+		// Lila de tinta de sello.
+		tono: ["#c9b8f2", "#ece6fc"],
+	},
 };
 
 // Orden en la portada y en el pie.
-export const giros: Giro[] = ["restaurants", "realEstate", "stays", "beauty", "fitness"];
+export const giros: Giro[] = ["restaurants", "realEstate", "stays", "beauty", "fitness", "professionals"];

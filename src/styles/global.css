@@ -1038,6 +1038,31 @@ html[data-giro="fitness"] .hero-glass::after {
 	border-radius: 50%;
 }
 
+/* Profesionales: una hoja de expediente con la esquina doblada. El corte va a 45°:
+   22% del ancho es 17% del alto en una hoja de 0.77. */
+html[data-giro="professionals"] .hero-glass {
+	top: 110px;
+	width: min(500px, 66vw);
+	aspect-ratio: 0.77;
+	border-radius: 18px;
+	clip-path: polygon(0 0, 78% 0, 100% 17%, 100% 100%, 0 100%);
+	transform: rotate(5deg);
+}
+
+/* La esquina doblada: solo se ve la mitad de abajo; la otra mitad la corta el clip-path. */
+html[data-giro="professionals"] .hero-glass::after {
+	content: "";
+	position: absolute;
+	top: -2px;
+	right: -2px;
+	width: 22%;
+	aspect-ratio: 1;
+	border-bottom: 2px solid rgb(255 255 255 / 55%);
+	border-left: 2px solid rgb(255 255 255 / 55%);
+	border-bottom-left-radius: 14px;
+	background: linear-gradient(to bottom left, transparent 50%, rgb(255 255 255 / 45%) 50%);
+}
+
 /* Pasos */
 
 .process {
