@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import { catalogos, type Giro } from "../catalogos";
-import { copy, correo, type Lang, telefono } from "../i18n";
+import { copy, correo, escribeme, type Lang } from "../i18n";
 import Base from "../layouts/Base.astro";
-import WaIcon from "./WaIcon.astro";
+import MailIcon from "./MailIcon.astro";
 
 interface Props {
 	lang: Lang;
@@ -16,7 +16,7 @@ const r = t[giro];
 const c = catalogos[giro];
 const demos = c.demos;
 const ruta = (id: string) => (lang === "en" && c.rutasEn?.[id]) || id;
-const whatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(r.whatsapp)}`;
+const escribir = escribeme(r.mensaje);
 const portadas = c.portadas;
 const [f1, f2, f3, f4] = c.flotantes.map((id) => portadas[id]);
 const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
@@ -39,7 +39,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 			</h1>
 			<p class="hero-lead">{r.lead}</p>
 			<div class="hero-actions">
-				<a class="btn btn-navy" href={whatsapp}>{r.primary}<WaIcon /></a>
+				<a class="btn btn-navy" href={escribir}>{r.primary}<MailIcon /></a>
 				<a class="btn btn-white" href={`#${r.examplesId}`}>{r.secondary}</a>
 			</div>
 			<p class="hero-mail rest-nota">{r.note}</p>
@@ -90,7 +90,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 			<h2><span class="line"><span class="line-in">{r.ctaH2a}</span></span><span class="line"><span class="line-in">{r.ctaH2b}</span></span></h2>
 			<p class="cta-text">{r.ctaText}</p>
 			<div class="hero-actions">
-				<a class="btn btn-navy" href={whatsapp}>{r.primary}<WaIcon /></a>
+				<a class="btn btn-navy" href={escribir}>{r.primary}<MailIcon /></a>
 				<span class="mail-chip">
 					<a href={`mailto:${correo}`}>{correo}</a>
 					<button type="button" class="copy" data-copy={correo} data-copied={t.copied} aria-live="polite">{t.copy}</button>

@@ -3,11 +3,11 @@
 // lo principal, el siguiente proyecto y el contacto. Los textos van en src/i18n bajo
 // `project` (comunes) y `projects.<id>`; las capturas en src/proyectos.ts.
 import { getImage, Image } from "astro:assets";
-import { copy, correo, type Lang, telefono } from "../i18n";
+import { copy, correo, escribeme, type Lang } from "../i18n";
 import Base from "../layouts/Base.astro";
 import { captura, conPagina, type ProyectoId, proyectos, rutaProyecto, totalCapturas } from "../proyectos";
 import Portada from "./Portada.astro";
-import WaIcon from "./WaIcon.astro";
+import MailIcon from "./MailIcon.astro";
 
 interface Props {
 	lang: Lang;
@@ -25,7 +25,7 @@ const siguiente = conPagina[(conPagina.indexOf(id) + 1) % conPagina.length];
 const tarjetaSig = t.work.items.find((i) => i.id === siguiente);
 const pies = c.shots as Record<string, string>;
 const titulos = c.groups as Record<string, string>;
-const whatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(tp.whatsapp.replace("{name}", tarjeta.name))}`;
+const escribir = escribeme(tp.mensaje.replace("{name}", tarjeta.name));
 
 const grupos = await Promise.all(
 	p.grupos.map(async (g) => ({
@@ -186,7 +186,7 @@ const cerrar = `<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="tru
 			<h2><span class="line"><span class="line-in">{tp.ctaH2a}</span></span><span class="line"><span class="line-in">{tp.ctaH2b}</span></span></h2>
 			<p class="cta-text">{tp.ctaText}</p>
 			<div class="hero-actions">
-				<a class="btn btn-navy" href={whatsapp}>{t.hero.primary}<WaIcon /></a>
+				<a class="btn btn-navy" href={escribir}>{t.hero.primary}<MailIcon /></a>
 				<span class="mail-chip">
 					<a href={`mailto:${correo}`}>{correo}</a>
 					<button type="button" class="copy" data-copy={correo} data-copied={t.copied} aria-live="polite">{t.copy}</button>

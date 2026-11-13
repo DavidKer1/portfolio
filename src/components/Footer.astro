@@ -1,6 +1,6 @@
 ---
 import { giros } from "../catalogos";
-import { copy, correo, type Lang, whatsapp } from "../i18n";
+import { copy, correo, type Lang } from "../i18n";
 
 interface Props {
 	lang: Lang;
@@ -17,7 +17,6 @@ const secciones = [
 ];
 const ejemplos = giros.map((g) => ({ label: t[g].nav, href: t[g].path }));
 const contacto = [
-	{ label: "WhatsApp", href: whatsapp(lang) },
 	{ label: correo, href: `mailto:${correo}` },
 	{ label: "LinkedIn", href: "https://linkedin.com/in/victor-sanchez-dev" },
 	{ label: "GitHub", href: "https://github.com/DavidKer1" },

@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import { catalogos, giros } from "../catalogos";
-import { copy, correo, type Lang, whatsapp } from "../i18n";
+import { copy, correo, escribeme, type Lang } from "../i18n";
 import Base from "../layouts/Base.astro";
 import { captura, type ProyectoId, proyectos, rutaProyecto, tienePagina, totalCapturas, visible } from "../proyectos";
 import Portada from "./Portada.astro";
-import WaIcon from "./WaIcon.astro";
+import MailIcon from "./MailIcon.astro";
 
 interface Props {
 	lang: Lang;
@@ -46,7 +46,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 			</h1>
 			<p class="hero-lead">{t.hero.lead}</p>
 			<div class="hero-actions">
-				<a class="btn btn-navy" href={whatsapp(lang)}>{t.hero.primary}<WaIcon /></a>
+				<a class="btn btn-navy" href={escribeme(t.mensaje)}>{t.hero.primary}<MailIcon /></a>
 				<a class="btn btn-white" href={`#${t.work.id}`}>{t.hero.secondary}</a>
 			</div>
 			<p class="hero-mail">
@@ -96,7 +96,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 						<h3>{s.title}</h3>
 						<p>{s.text}</p>
 						<p class="service-examples"><strong>{t.services.examples}:</strong> {s.examples}</p>
-						<a class="btn btn-white" href={whatsapp(lang)}>{t.services.cta}</a>
+						<a class="btn btn-white" href={escribeme(t.mensaje)}>{t.services.cta}</a>
 					</div>
 					<div class={`tiles tiles-${s.images.length}`}>
 						{s.images.map((k) => (
@@ -207,7 +207,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 			<h2><span class="line"><span class="line-in">{t.contact.h2a}</span></span><span class="line"><span class="line-in">{t.contact.h2b}</span></span></h2>
 			<p class="cta-text">{t.contact.text}</p>
 			<div class="hero-actions">
-				<a class="btn btn-navy" href={whatsapp(lang)}>{t.hero.primary}<WaIcon /></a>
+				<a class="btn btn-navy" href={escribeme(t.mensaje)}>{t.hero.primary}<MailIcon /></a>
 				<span class="mail-chip">
 					<a href={`mailto:${correo}`}>{correo}</a>
 					<button type="button" class="copy" data-copy={correo} data-copied={t.copied} aria-live="polite">{t.copy}</button>

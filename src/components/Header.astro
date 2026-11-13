@@ -1,6 +1,6 @@
 ---
-import { copy, type Lang, whatsapp } from "../i18n";
-import WaIcon from "./WaIcon.astro";
+import { copy, escribeme, type Lang } from "../i18n";
+import MailIcon from "./MailIcon.astro";
 
 interface Props {
 	lang: Lang;
@@ -23,9 +23,9 @@ const home = t.routes.home;
 		</nav>
 		<div class="header-actions">
 			<a class="lang-btn" href={otherPath ?? t.routes.other} hreflang={t.nav.otherLang} lang={t.nav.otherLang} aria-label={t.nav.other}>{t.nav.otherShort}</a>
-			<a class="btn btn-cream" href={whatsapp(lang)}>
+			<a class="btn btn-cream" href={escribeme(t.mensaje)}>
 				{t.nav.cta}
-				<WaIcon />
+				<MailIcon />
 			</a>
 		</div>
 	</div>

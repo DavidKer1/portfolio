@@ -9,8 +9,8 @@ export function copy(lang: Lang) {
 
 export const correo = "dev@victorsanchez.mx";
 
-export const telefono = "528443006533";
-
-export function whatsapp(lang: Lang) {
-	return `https://wa.me/${telefono}?text=${encodeURIComponent(copy(lang).whatsapp)}`;
+// El número de WhatsApp se quitó del sitio el 2026-11-13 porque llegaban llamadas de spam.
+// Los botones abren un correo con el mensaje ya escrito.
+export function escribeme(mensaje: string) {
+	return `mailto:${correo}?body=${encodeURIComponent(mensaje)}`;
 }

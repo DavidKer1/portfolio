@@ -5,7 +5,7 @@ Victor eligió el 2026-11-06 el estilo de usehalo.com. Se replican su estructura
 ## Estructura
 
 1. Encabezado sobre la portada: logotipo en mayúsculas, menú en píldora blanca al centro, botón de idioma y "Escríbeme" en crema.
-2. Portada con degradado cian, titular azul marino muy grueso y centrado, forma de vidrio detrás y capturas reales de proyectos flotando. Botones: WhatsApp (marino) y "Ver proyectos" (blanco). Debajo, el correo con botón de copiar.
+2. Portada con degradado cian, titular azul marino muy grueso y centrado, forma de vidrio detrás y capturas reales de proyectos flotando. Botones: "Escríbeme un correo" (marino) y "Ver proyectos" (blanco). Debajo, el correo con botón de copiar.
 3. Franja con los nombres de los proyectos en mayúsculas.
 4. "Lo que hago": título en dos colores y pestañas. Cada pestaña es una tarjeta marina con texto a la izquierda y capturas a la derecha.
 5. Proyectos sobre una franja marina con borde superior curvo, en tarjetas blancas.
