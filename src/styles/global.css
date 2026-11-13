@@ -441,8 +441,7 @@ html:not(.js) .copy {
 }
 
 .f2 img {
-	object-fit: contain;
-	background: #f9f9f9;
+	object-position: left top;
 }
 
 .f3 {

@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { catalogos, giros } from "../catalogos";
 import { copy, correo, type Lang, whatsapp } from "../i18n";
 import Base from "../layouts/Base.astro";
-import { captura, type ProyectoId, proyectos, rutaProyecto, tienePagina, totalCapturas } from "../proyectos";
+import { captura, type ProyectoId, proyectos, rutaProyecto, tienePagina, totalCapturas, visible } from "../proyectos";
 import Portada from "./Portada.astro";
 import WaIcon from "./WaIcon.astro";
 
@@ -14,10 +14,12 @@ interface Props {
 const { lang } = Astro.props;
 const t = copy(lang);
 // Capturas de la portada y de las pestañas de servicios, tomadas de cada proyecto.
+// Los proyectos ocultos (ver src/proyectos.ts) no salen ni en la tira de nombres ni en las tarjetas.
+const trabajos = t.work.items.filter((p) => visible(p.id as ProyectoId));
 const imagenes: Record<string, ImageMetadata> = {
 	apuntafy: captura("apuntafy", "reserva"),
 	apuntafyMovil: captura("apuntafy", "m-servicios"),
-	peoplecor: captura("peoplecor", "panel"),
+	tintelyWeb: captura("tintely", "inicio"),
 	scholastico: captura("scholastico", "m-mapa"),
 	sonrisas: captura("sonrisas", "m-inicio"),
 	tintely1: captura("tintely", "m-inicio"),
@@ -33,7 +35,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 		<div class="hero-glass-wrap" aria-hidden="true"><div class="hero-glass"></div></div>
 		<div class="floats" aria-hidden="true">
 			<div class="float-wrap f1" data-speed="-90"><div class="float"><Image src={imagenes.apuntafy} alt="" widths={[360, 720]} sizes="320px" priority /></div></div>
-			<div class="float-wrap f2" data-speed="-60"><div class="float"><Image src={imagenes.peoplecor} alt="" widths={[300, 600]} sizes="260px" priority /></div></div>
+			<div class="float-wrap f2" data-speed="-60"><div class="float"><Image src={imagenes.tintelyWeb} alt="" widths={[300, 600]} sizes="260px" priority /></div></div>
 			<div class="float-wrap f3" data-speed="-150"><div class="float"><Image src={imagenes.sonrisas} alt="" widths={[300, 600]} sizes="240px" loading="lazy" /></div></div>
 			<div class="float-wrap f4" data-speed="-190"><div class="float"><Image src={imagenes.apuntafyMovil} alt="" widths={[240, 480]} sizes="200px" loading="lazy" /></div></div>
 		</div>
@@ -59,10 +61,10 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 		<div class="marquee">
 			<div class="marquee-track">
 				<ul>
-					{t.work.items.map((p) => <li>{p.name}</li>)}
+					{trabajos.map((p) => <li>{p.name}</li>)}
 				</ul>
 				<ul aria-hidden="true">
-					{t.work.items.map((p) => <li>{p.name}</li>)}
+					{trabajos.map((p) => <li>{p.name}</li>)}
 				</ul>
 			</div>
 		</div>
@@ -115,7 +117,7 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 				<h2 class="two-tone on-navy"><span class="line c"><span class="line-in">{t.work.h2a}</span></span><span class="line"><span class="line-in">{t.work.h2b}</span></span></h2>
 			</div>
 			<div class="project-grid">
-				{t.work.items.map((p) => {
+				{trabajos.map((p) => {
 					const id = p.id as ProyectoId;
 					const [a, b] = proyectos[id].tono;
 					return (

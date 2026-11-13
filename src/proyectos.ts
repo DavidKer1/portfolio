@@ -32,7 +32,11 @@ interface Proyecto {
 	grupos: Grupo[];
 }
 
-const archivos = import.meta.glob<{ default: ImageMetadata }>("./assets/proyectos/*/*.webp", { eager: true });
+// Las capturas de los proyectos ocultos (más abajo) quedan fuera para que ni siquiera
+// se copien al sitio publicado. Si un proyecto sale de `ocultos`, sácalo también de aquí.
+const archivos = import.meta.glob<{ default: ImageMetadata }>(["./assets/proyectos/*/*.webp", "!./assets/proyectos/peoplecor/*"], {
+	eager: true,
+});
 
 export function captura(id: ProyectoId, nombre: string): ImageMetadata {
 	const archivo = archivos[`./assets/proyectos/${id}/${nombre}.webp`];
@@ -47,7 +51,13 @@ export const orden: ProyectoId[] = ["apuntafy", "sonrisas", "peoplecor", "schola
 // y sácalos de esta lista.
 const enRediseno: ProyectoId[] = ["apuntafy"];
 
-export const tienePagina = (id: ProyectoId) => !enRediseno.includes(id);
+// Proyectos ocultos por ahora: sin tarjeta, sin página y sin mención en la portada.
+// PeopleCor queda fuera mientras Victor trabaje ahí. Sus textos y capturas se quedan
+// para volver a mostrarlo: sácalo de esta lista y del filtro de `archivos`.
+const ocultos: ProyectoId[] = ["peoplecor"];
+
+export const visible = (id: ProyectoId) => !ocultos.includes(id);
+export const tienePagina = (id: ProyectoId) => visible(id) && !enRediseno.includes(id);
 export const conPagina = orden.filter(tienePagina);
 
 export const proyectos: Record<ProyectoId, Proyecto> = {

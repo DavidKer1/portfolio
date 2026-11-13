@@ -53,8 +53,8 @@ export const en: Copy = {
 				tab: "Web systems",
 				title: "Software for your operations",
 				text: "If you track bookings, orders, inventory or payroll in spreadsheets or on paper, I turn it into a system your whole team can use.",
-				examples: "Apuntafy and PeopleCor",
-				images: ["apuntafy", "peoplecor"],
+				examples: "Apuntafy",
+				images: ["apuntafy", "apuntafyMovil"],
 			},
 			{
 				tab: "Websites and payments",

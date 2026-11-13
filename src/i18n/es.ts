@@ -51,8 +51,8 @@ export const es = {
 				tab: "Sistemas web",
 				title: "Sistemas para tu operación",
 				text: "Si hoy llevas citas, pedidos, inventario o nómina en Excel o en papel, lo paso a un sistema que pueda usar todo tu equipo.",
-				examples: "Apuntafy y PeopleCor",
-				images: ["apuntafy", "peoplecor"],
+				examples: "Apuntafy",
+				images: ["apuntafy", "apuntafyMovil"],
 			},
 			{
 				tab: "Páginas y pagos",
