@@ -1,16 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import apuntafy from "../assets/work/apuntafy-producto.webp";
-import apuntafyMovil from "../assets/work/apuntafy-movil.webp";
-import peoplecor from "../assets/work/peoplecor.webp";
-import scholastico from "../assets/work/scholastico.webp";
-import sonrisas from "../assets/work/sonrisas.webp";
-import tintely1 from "../assets/work/tintely-1.jpg";
-import tintely2 from "../assets/work/tintely-2.jpg";
-import zenlift from "../assets/work/zenlift.webp";
 import { catalogos, giros } from "../catalogos";
 import { copy, correo, type Lang, whatsapp } from "../i18n";
 import Base from "../layouts/Base.astro";
+import { captura, type ProyectoId, proyectos, rutaProyecto, tienePagina, totalCapturas } from "../proyectos";
+import Portada from "./Portada.astro";
 import WaIcon from "./WaIcon.astro";
 
 interface Props {
@@ -19,16 +13,18 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = copy(lang);
+// Capturas de la portada y de las pestañas de servicios, tomadas de cada proyecto.
 const imagenes: Record<string, ImageMetadata> = {
-	apuntafy,
-	apuntafyMovil,
-	peoplecor,
-	scholastico,
-	sonrisas,
-	tintely1,
-	tintely2,
-	zenlift,
+	apuntafy: captura("apuntafy", "reserva"),
+	apuntafyMovil: captura("apuntafy", "m-servicios"),
+	peoplecor: captura("peoplecor", "panel"),
+	scholastico: captura("scholastico", "m-mapa"),
+	sonrisas: captura("sonrisas", "m-inicio"),
+	tintely1: captura("tintely", "m-clasico"),
+	tintely2: captura("tintely", "m-paris"),
+	zenlift: captura("zenlift", "m-inicio"),
 };
+const derecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
 const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
 ---
 
@@ -36,10 +32,10 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 	<section class="hero">
 		<div class="hero-glass-wrap" aria-hidden="true"><div class="hero-glass"></div></div>
 		<div class="floats" aria-hidden="true">
-			<div class="float-wrap f1" data-speed="-90"><div class="float"><Image src={apuntafy} alt="" widths={[360, 720]} sizes="320px" priority /></div></div>
-			<div class="float-wrap f2" data-speed="-60"><div class="float"><Image src={peoplecor} alt="" widths={[300, 600]} sizes="260px" priority /></div></div>
-			<div class="float-wrap f3" data-speed="-150"><div class="float"><Image src={sonrisas} alt="" widths={[300, 600]} sizes="240px" loading="lazy" /></div></div>
-			<div class="float-wrap f4" data-speed="-190"><div class="float"><Image src={apuntafyMovil} alt="" widths={[240, 480]} sizes="200px" loading="lazy" /></div></div>
+			<div class="float-wrap f1" data-speed="-90"><div class="float"><Image src={imagenes.apuntafy} alt="" widths={[360, 720]} sizes="320px" priority /></div></div>
+			<div class="float-wrap f2" data-speed="-60"><div class="float"><Image src={imagenes.peoplecor} alt="" widths={[300, 600]} sizes="260px" priority /></div></div>
+			<div class="float-wrap f3" data-speed="-150"><div class="float"><Image src={imagenes.sonrisas} alt="" widths={[300, 600]} sizes="240px" loading="lazy" /></div></div>
+			<div class="float-wrap f4" data-speed="-190"><div class="float"><Image src={imagenes.apuntafyMovil} alt="" widths={[240, 480]} sizes="200px" loading="lazy" /></div></div>
 		</div>
 		<div class="wrap hero-inner">
 			<h1>
@@ -119,26 +115,28 @@ const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="tru
 				<h2 class="two-tone on-navy"><span class="line c"><span class="line-in">{t.work.h2a}</span></span><span class="line"><span class="line-in">{t.work.h2b}</span></span></h2>
 			</div>
 			<div class="project-grid">
-				{t.work.items.map((p) => (
-					<article class="project-card">
-						<div class={`project-media media-${p.id}`}>
-							{p.id === "tintely" ? (
-								<div class="tintely-pair">
-									<Image src={tintely1} alt={p.alt} widths={[280, 560]} sizes="(min-width: 900px) 14vw, 40vw" loading="lazy" />
-									<Image src={tintely2} alt="" widths={[280, 560]} sizes="(min-width: 900px) 14vw, 40vw" loading="lazy" />
-								</div>
-							) : (
-								<Image src={imagenes[p.id]} alt={p.alt} widths={[400, 800, 1200]} sizes="(min-width: 900px) 30vw, 100vw" loading="lazy" />
-							)}
-						</div>
-						<div class="project-body">
-							<p class="project-kind">{p.kind}</p>
-							<h3>{p.name}</h3>
-							<p>{p.text}</p>
-							<a class="project-link" href={p.href}>{t.work.open} {p.name} <span set:html={flecha} /></a>
-						</div>
-					</article>
-				))}
+				{t.work.items.map((p) => {
+					const id = p.id as ProyectoId;
+					const [a, b] = proyectos[id].tono;
+					return (
+						<article class="project-card" style={`--tono-a: ${a}; --tono-b: ${b}`}>
+							<div class="project-media" role="img" aria-label={p.alt}>
+								<Portada id={id} />
+								{tienePagina(id) && <span class="shot-count">{totalCapturas(id)} {t.project.count}</span>}
+							</div>
+							<div class="project-body">
+								<p class="project-kind">{p.kind}</p>
+								<h3>{p.name}</h3>
+								<p>{p.text}</p>
+								{tienePagina(id) ? (
+									<a class="project-link" href={rutaProyecto(lang, id)}>{t.work.open}<span class="sr-only">: {p.name}</span> <span set:html={derecha} /></a>
+								) : (
+									<a class="project-link" href={p.href} target="_blank" rel="noopener">{t.projects[id].visit} <span set:html={flecha} /></a>
+								)}
+							</div>
+						</article>
+					);
+				})}
 			</div>
 			<div class="catalogs">
 				<div class="catalogs-head">

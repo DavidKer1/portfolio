@@ -19,7 +19,7 @@ Requiere Node 22.23.4 o superior.
 - `src/i18n/es.ts` y `en.ts`: todos los textos. Español en `/`, inglés en `/en/`.
 - `src/components/`: portada, encabezado y pie.
 - `src/i18n/index.ts`: correo y número de WhatsApp.
-- `src/assets/work/`: capturas reales de cada producto.
+- `src/proyectos.ts` y `src/assets/proyectos/<id>/`: las capturas de cada proyecto y cómo se agrupan en su página (`/proyectos/<slug>/`). Los textos de esas páginas están en `src/i18n`, bajo `projects`.
 - `_referencia/`: copia local de la versión anterior, solo para consulta. Git la ignora.
 
 ## Despliegue en Coolify

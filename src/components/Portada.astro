@@ -1,0 +1,49 @@
+---
+// Portada de un proyecto: un navegador con un celular encima, o tres celulares cuando
+// el proyecto no tiene web. Sale en la tarjeta de la portada del sitio ("card") y en
+// la portada de la página del proyecto ("hero").
+import { Image } from "astro:assets";
+import { captura, type ProyectoId, proyectos } from "../proyectos";
+
+interface Props {
+	id: ProyectoId;
+	size?: "card" | "hero";
+	priority?: boolean;
+}
+
+const { id, size = "card", priority = false } = Astro.props;
+const p = proyectos[id].portada;
+const web = p.web ? captura(id, p.web) : undefined;
+const moviles = p.moviles.map((m) => captura(id, m));
+const hero = size === "hero";
+const carga = priority ? { priority: true } : { loading: "lazy" as const };
+---
+
+<div class:list={["portada", `portada-${size}`, web ? "portada-web" : "portada-moviles"]} aria-hidden="true">
+	{
+		web && (
+			<div class="frame-web portada-browser">
+				<div class="frame-bar">
+					<i />
+					<i />
+					<i />
+					<span>{p.url}</span>
+				</div>
+				<Image
+					src={web}
+					alt=""
+					widths={hero ? [700, 1100, 1600] : [480, 960]}
+					sizes={hero ? "(min-width: 1240px) 900px, 80vw" : "(min-width: 1000px) 330px, (min-width: 760px) 40vw, 80vw"}
+					{...carga}
+				/>
+			</div>
+		)
+	}
+	{
+		moviles.map((m, i) => (
+			<div class={`frame-phone portada-phone ph-${i + 1}`}>
+				<Image src={m} alt="" widths={hero ? [280, 560] : [160, 320]} sizes={hero ? "(min-width: 760px) 270px, 30vw" : "(min-width: 760px) 120px, 28vw"} {...carga} />
+			</div>
+		))
+	}
+</div>

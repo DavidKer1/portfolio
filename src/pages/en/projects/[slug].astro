@@ -1,0 +1,12 @@
+---
+import Proyecto from "../../../components/Proyecto.astro";
+import { conPagina, proyectos } from "../../../proyectos";
+
+export function getStaticPaths() {
+	return conPagina.map((id) => ({ params: { slug: proyectos[id].slug }, props: { id } }));
+}
+
+const { id } = Astro.props;
+---
+
+<Proyecto lang="en" id={id} />

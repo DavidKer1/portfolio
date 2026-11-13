@@ -14,10 +14,13 @@ interface Props {
 	jsonLd?: boolean;
 	// En la página de un catálogo, su giro: le da su color y la forma del vidrio.
 	giro?: Giro;
+	// En la página de un proyecto, su color (ver src/proyectos.ts).
+	tono?: [string, string];
+	proyecto?: string;
 }
 
-const { lang, title, description, otherPath, jsonLd = false, giro } = Astro.props;
-const tono = giro ? catalogos[giro].tono : undefined;
+const { lang, title, description, otherPath, jsonLd = false, giro, proyecto } = Astro.props;
+const tono = giro ? catalogos[giro].tono : Astro.props.tono;
 const t = copy(lang);
 const pageTitle = title ?? t.meta.title;
 const pageDescription = description ?? t.meta.description;
@@ -47,7 +50,7 @@ const persona = {
 ---
 
 <!doctype html>
-<html lang={lang === "es" ? "es-MX" : "en"} data-giro={giro} style={tono && `--tono-a: ${tono[0]}; --tono-b: ${tono[1]}`}>
+<html lang={lang === "es" ? "es-MX" : "en"} data-giro={giro} data-proyecto={proyecto} data-tono={tono ? "" : undefined} style={tono && `--tono-a: ${tono[0]}; --tono-b: ${tono[1]}`}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />

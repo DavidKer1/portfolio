@@ -1,0 +1,209 @@
+---
+// Página de un proyecto: portada, qué es y qué hice, galería de pantallas con visor,
+// lo principal, el siguiente proyecto y el contacto. Los textos van en src/i18n bajo
+// `project` (comunes) y `projects.<id>`; las capturas en src/proyectos.ts.
+import { getImage, Image } from "astro:assets";
+import { copy, correo, type Lang, telefono } from "../i18n";
+import Base from "../layouts/Base.astro";
+import { captura, conPagina, type ProyectoId, proyectos, rutaProyecto, totalCapturas } from "../proyectos";
+import Portada from "./Portada.astro";
+import WaIcon from "./WaIcon.astro";
+
+interface Props {
+	lang: Lang;
+	id: ProyectoId;
+}
+
+const { lang, id } = Astro.props;
+const t = copy(lang);
+const tp = t.project;
+const c = t.projects[id];
+const p = proyectos[id];
+const tarjeta = t.work.items.find((i) => i.id === id);
+if (!tarjeta) throw new Error(`Falta el proyecto ${id} en work.items`);
+const siguiente = conPagina[(conPagina.indexOf(id) + 1) % conPagina.length];
+const tarjetaSig = t.work.items.find((i) => i.id === siguiente);
+const pies = c.shots as Record<string, string>;
+const titulos = c.groups as Record<string, string>;
+const whatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(tp.whatsapp.replace("{name}", tarjeta.name))}`;
+
+const grupos = await Promise.all(
+	p.grupos.map(async (g) => ({
+		...g,
+		titulo: titulos[g.id],
+		items: await Promise.all(
+			g.capturas.map(async (nombre) => {
+				const img = captura(id, nombre);
+				// La versión grande del visor; sin JavaScript, el enlace la abre sola.
+				const grande = await getImage({ src: img, width: Math.min(img.width, g.marco === "movil" ? 780 : 1600), format: "webp" });
+				return { nombre, img, grande: grande.src, pie: pies[nombre], ancha: g.anchas?.includes(nombre) ?? false };
+			}),
+		),
+	})),
+);
+
+// Celulares por fila: filas parejas de cinco como máximo (6 = 3 + 3, 7 = 4 + 3, 8 = 4 + 4).
+const columnas = (n: number) => Math.ceil(n / Math.ceil(n / 5));
+const flecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
+const derecha = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
+const izquierda = `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
+const lupa = `<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m13 13 4.5 4.5M8.5 6v5M6 8.5h5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
+const cerrar = `<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>`;
+---
+
+<Base lang={lang} title={c.meta.title} description={c.meta.description} otherPath={rutaProyecto(lang === "es" ? "en" : "es", id)} tono={p.tono} proyecto={id}>
+	<section class="hero proj-hero">
+		<div class="hero-glass-wrap" aria-hidden="true"><div class="hero-glass"></div></div>
+		<div class="wrap hero-inner">
+			<a class="proj-back" href={`${t.routes.home}#${t.work.id}`}><span set:html={izquierda} />{tp.back}</a>
+			<p class="pill pill-white rest-pill">{tarjeta.kind}</p>
+			<h1><span class="line"><span class="line-in">{tarjeta.name}</span></span></h1>
+			<p class="hero-lead">{c.lead}</p>
+			<div class="hero-actions">
+				<a class="btn btn-navy" href={tarjeta.href} target="_blank" rel="noopener">{c.visit}<span set:html={flecha} /></a>
+				<a class="btn btn-white" href="#pantallas">{tp.screens}</a>
+			</div>
+		</div>
+		<div class="wrap proj-showcase">
+			<Portada id={id} size="hero" priority />
+		</div>
+	</section>
+
+	<section class="wrap proj-info">
+		<dl class="proj-rows">
+			<div>
+				<dt>{tp.rows.about}</dt>
+				<dd>{c.about}</dd>
+			</div>
+			<div>
+				<dt>{tp.rows.role}</dt>
+				<dd>{c.role}</dd>
+			</div>
+			<div>
+				<dt>{tp.rows.stack}</dt>
+				<dd><ul class="stack">{c.stack.map((s) => <li>{s}</li>)}</ul></dd>
+			</div>
+			<div>
+				<dt>{tp.rows.status}</dt>
+				<dd class="proj-status">
+					<span>{c.status}</span>
+					<a class="project-link" href={tarjeta.href} target="_blank" rel="noopener">{c.visit} <span set:html={flecha} /></a>
+				</dd>
+			</div>
+		</dl>
+	</section>
+
+	<section class="band-navy proj-gallery" id="pantallas">
+		<div class="wrap">
+			<div class="heading" data-heading>
+				<p class="pill pill-yellow">{tp.galleryPill} · {totalCapturas(id)} {tp.count}</p>
+				<h2 class="two-tone on-navy"><span class="line c"><span class="line-in">{tp.galleryH2a}</span></span><span class="line"><span class="line-in">{tarjeta.name}</span></span></h2>
+			</div>
+			{
+				grupos.map((g) => (
+					<div class="shot-group">
+						<h3 class="shot-group-title">
+							{g.titulo} <span>{g.items.length}</span>
+						</h3>
+						<ul class={`shots shots-${g.marco}`} style={g.marco === "movil" ? `--cols: ${columnas(g.items.length)}` : undefined}>
+							{g.items.map((s) => (
+								<li class:list={["shot", { "shot-ancha": s.ancha }]}>
+									<a class="shot-link" href={s.grande} data-shot data-marco={g.marco} data-caption={s.pie} aria-label={`${tp.zoom}: ${s.pie}`}>
+										{g.marco === "web" && (
+											<div class="frame-web">
+												<div class="frame-bar">
+													<i />
+													<i />
+													<i />
+													<span>{g.url}</span>
+												</div>
+												<Image src={s.img} alt="" widths={[600, 1000, 1600]} sizes={s.ancha ? "(min-width: 1240px) 1240px, 92vw" : "(min-width: 1240px) 610px, (min-width: 760px) 46vw, 88vw"} loading="lazy" />
+											</div>
+										)}
+										{g.marco === "movil" && (
+											<div class="frame-phone">
+												<Image src={s.img} alt="" widths={[240, 480, 780]} sizes="(min-width: 760px) 220px, 62vw" loading="lazy" />
+											</div>
+										)}
+										{g.marco === "libre" && (
+											<div class="frame-libre">
+												<Image src={s.img} alt="" widths={[500, 1000]} sizes="(min-width: 1240px) 610px, (min-width: 760px) 46vw, 88vw" loading="lazy" />
+											</div>
+										)}
+										<span class="shot-zoom" set:html={lupa} />
+									</a>
+									<p class="shot-caption">{s.pie}</p>
+								</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+			{c.note && <p class="shot-note">{c.note}</p>}
+		</div>
+	</section>
+
+	<section class="wrap proj-highlights">
+		<div class="proj-highlights-head" data-heading>
+			<p class="pill pill-blue">{tp.highlightsPill}</p>
+			<h2 class="two-tone"><span class="line c"><span class="line-in">{tp.highlightsH2a}</span></span><span class="line"><span class="line-in">{tp.highlightsH2b}</span></span></h2>
+		</div>
+		<ol class="highlights">
+			{
+				c.highlights.map((h, i) => (
+					<li>
+						<span class="hl-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+						<div>
+							<h3>{h.name}</h3>
+							<p>{h.text}</p>
+						</div>
+					</li>
+				))
+			}
+		</ol>
+	</section>
+
+	{
+		tarjetaSig && (
+			<section class="wrap proj-next-wrap">
+				<a class="proj-next" href={rutaProyecto(lang, siguiente)} style={`--tono-a: ${proyectos[siguiente].tono[0]}; --tono-b: ${proyectos[siguiente].tono[1]}`}>
+					<div class="proj-next-text">
+						<p class="project-kind">{tp.next}</p>
+						<p class="proj-next-name">{tarjetaSig.name}</p>
+						<p class="proj-next-desc">{tarjetaSig.text}</p>
+						<span class="project-link">
+							{t.work.open} <span set:html={derecha} />
+						</span>
+					</div>
+					<Portada id={siguiente} />
+				</a>
+			</section>
+		)
+	}
+
+	<section class="cta-band proj-cta" id={t.contact.id}>
+		<div class="wrap cta-inner" data-heading>
+			<h2><span class="line"><span class="line-in">{tp.ctaH2a}</span></span><span class="line"><span class="line-in">{tp.ctaH2b}</span></span></h2>
+			<p class="cta-text">{tp.ctaText}</p>
+			<div class="hero-actions">
+				<a class="btn btn-navy" href={whatsapp}>{t.hero.primary}<WaIcon /></a>
+				<span class="mail-chip">
+					<a href={`mailto:${correo}`}>{correo}</a>
+					<button type="button" class="copy" data-copy={correo} data-copied={t.copied} aria-live="polite">{t.copy}</button>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<dialog class="lightbox" data-lightbox data-lenis-prevent data-of={tp.of} aria-label={tarjeta.name}>
+		<div class="lightbox-stage" data-lightbox-stage>
+			<figure class="lightbox-figure">
+				<img alt="" data-lightbox-img />
+				<figcaption><span data-lightbox-caption></span><span class="lightbox-count" data-lightbox-count></span></figcaption>
+			</figure>
+		</div>
+		<button type="button" class="lb-btn lb-close" data-lightbox-close aria-label={tp.close} set:html={cerrar} />
+		<button type="button" class="lb-btn lb-prev" data-lightbox-prev aria-label={tp.prev} set:html={izquierda} />
+		<button type="button" class="lb-btn lb-next" data-lightbox-next aria-label={tp.nextShot} set:html={derecha} />
+	</dialog>
+</Base>

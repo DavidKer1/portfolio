@@ -31,7 +31,7 @@ function entrada() {
 	tl.from(".hero-glass", { scale: 0.55, rotate: -40, autoAlpha: 0, duration: 2 }, 0)
 		.from(".hero h1 .line-in", { yPercent: 115, duration: 1.3, stagger: 0.12 }, 0.15)
 		.from(
-			[".hero .rest-pill", ".hero .hero-lead", ".hero .hero-actions", ".hero .hero-mail"],
+			[".hero .proj-back", ".hero .rest-pill", ".hero .hero-lead", ".hero .hero-actions", ".hero .hero-mail"],
 			{ y: 24, autoAlpha: 0, duration: 1.1, stagger: 0.1 },
 			0.55,
 		)
@@ -40,6 +40,14 @@ function entrada() {
 			{ y: 70, scale: 0.8, autoAlpha: 0, duration: 1.4, stagger: 0.12, ease: "back.out(1.5)" },
 			0.65,
 		);
+	// En la página de un proyecto, la portada sube desde abajo y luego cada aparato.
+	if (document.querySelector(".proj-showcase")) {
+		tl.from(".proj-showcase", { y: 140, autoAlpha: 0, duration: 1.6 }, 0.6).from(
+			".proj-showcase .portada > *",
+			{ y: 60, duration: 1.5, stagger: 0.12 },
+			0.7,
+		);
+	}
 }
 
 function subir(selector: string, distancia = 60) {
@@ -59,6 +67,10 @@ function alHacerScroll() {
 		const recorrido = { trigger: hero, start: "top top", end: "bottom top", scrub: true };
 		gsap.to(".hero-inner", { yPercent: 22, opacity: 0.15, ease: "none", scrollTrigger: recorrido });
 		gsap.to(".hero-glass-wrap", { scale: 1.3, rotate: 10, ease: "none", scrollTrigger: recorrido });
+		// La portada de un proyecto: el celular sube más rápido que el navegador.
+		for (const [capa, y] of [[".proj-showcase .portada-browser", -40], [".proj-showcase .portada-phone", -110]] as const) {
+			if (document.querySelector(capa)) gsap.to(capa, { y, ease: "none", scrollTrigger: recorrido });
+		}
 		for (const capa of gsap.utils.toArray<HTMLElement>("[data-speed]")) {
 			gsap.to(capa, { y: Number(capa.dataset.speed) * 2, ease: "none", scrollTrigger: recorrido });
 		}
@@ -85,6 +97,12 @@ function alHacerScroll() {
 	subir(".catalog-grid li", 70);
 	subir(".steps li", 70);
 	subir(".about-body > *", 30);
+	subir(".proj-rows > div", 30);
+	subir(".shot-group-title", 24);
+	subir(".shot", 70);
+	subir(".shot-note", 20);
+	subir(".highlights li", 40);
+	subir(".proj-next", 70);
 	subir(".footer-cols ul", 30);
 
 	const tarjeta = document.querySelector(".about-card");
