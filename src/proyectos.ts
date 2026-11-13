@@ -49,7 +49,7 @@ export const orden: ProyectoId[] = ["apuntafy", "sonrisas", "peoplecor", "schola
 // Proyectos en rediseño (noviembre de 2026): su página no se publica todavía y la
 // tarjeta de la portada lleva a su sitio. Al terminar el rediseño, retoma las capturas
 // y sácalos de esta lista.
-const enRediseno: ProyectoId[] = ["apuntafy"];
+const enRediseno: ProyectoId[] = [];
 
 // Proyectos ocultos por ahora: sin tarjeta, sin página y sin mención en la portada.
 // PeopleCor queda fuera mientras Victor trabaje ahí. Sus textos y capturas se quedan
@@ -63,21 +63,21 @@ export const conPagina = orden.filter(tienePagina);
 export const proyectos: Record<ProyectoId, Proyecto> = {
 	apuntafy: {
 		slug: "apuntafy",
-		// Lila de la marca.
-		tono: ["#c4b5ff", "#ece7ff"],
+		// Azul de la marca.
+		tono: ["#b9c6ff", "#e8edff"],
 		portada: { web: "inicio", url: "apuntafy.com", moviles: ["m-servicios"] },
 		grupos: [
 			{
 				id: "web",
 				marco: "web",
 				url: "apuntafy.com",
-				capturas: ["reserva", "inicio", "como-funciona", "precios", "registro"],
+				capturas: ["reserva", "inicio", "lugares", "clienta", "recordatorios", "precios", "elige-link"],
 				anchas: ["reserva"],
 			},
 			{
 				id: "movil",
 				marco: "movil",
-				capturas: ["m-servicios", "m-hero", "m-reservan", "m-mensajes", "m-esencial", "m-precios", "m-registro"],
+				capturas: ["m-servicios", "m-inicio", "m-lugares", "m-clienta", "m-recordatorios", "m-incluye", "m-precios", "m-elige-link"],
 			},
 		],
 	},
