@@ -45,7 +45,7 @@ export const orden: ProyectoId[] = ["apuntafy", "sonrisas", "peoplecor", "schola
 // Proyectos en rediseño (noviembre de 2026): su página no se publica todavía y la
 // tarjeta de la portada lleva a su sitio. Al terminar el rediseño, retoma las capturas
 // y sácalos de esta lista.
-const enRediseno: ProyectoId[] = ["apuntafy", "tintely"];
+const enRediseno: ProyectoId[] = ["apuntafy"];
 
 export const tienePagina = (id: ProyectoId) => !enRediseno.includes(id);
 export const conPagina = orden.filter(tienePagina);
@@ -97,42 +97,21 @@ export const proyectos: Record<ProyectoId, Proyecto> = {
 	},
 	tintely: {
 		slug: "tintely",
-		// Champaña, del papel de las invitaciones.
+		// Champaña y kraft, de los papeles del sitio.
 		tono: ["#e8d3ad", "#f7eee0"],
-		portada: { web: "hero", url: "tintely.com", moviles: ["m-clasico"] },
+		portada: { web: "inicio", url: "tintely.com", moviles: ["m-inicio"] },
 		grupos: [
-			{
-				id: "disenos",
-				marco: "movil",
-				capturas: [
-					"m-clasico",
-					"m-paris",
-					"m-newyork",
-					"m-rosse",
-					"m-singapur",
-					"m-mexican-contemporary",
-					"m-modern-minimal",
-					"m-noir-black-tie",
-					"m-botanical-fine-art",
-					"m-soft-romantic",
-				],
-			},
-			{
-				id: "invitacion",
-				marco: "movil",
-				capturas: [
-					"m-clasico-historia",
-					"m-clasico-donde",
-					"m-clasico-itinerario",
-					"m-clasico-galeria",
-					"m-italian-rsvp",
-				],
-			},
 			{
 				id: "web",
 				marco: "web",
 				url: "tintely.com",
-				capturas: ["hero", "prueba", "disenos", "precio", "demo-italian", "demo-noir"],
+				capturas: ["inicio", "negocio", "evento", "destacado", "precios", "proyecto", "como"],
+				anchas: ["inicio"],
+			},
+			{
+				id: "movil",
+				marco: "movil",
+				capturas: ["m-inicio", "m-negocio", "m-evento", "m-destacado", "m-precios", "m-proyecto", "m-como", "m-links"],
 			},
 		],
 	},
